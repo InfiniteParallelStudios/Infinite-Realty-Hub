@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "msjsdiag.vscode-react-native",
+    "dsznajder.es7-react-js-snippets", 
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-eslint",
+    "pmneo.tsimporter",
+    "eamodio.gitlens",
+    "rangav.vscode-thunder-client"
+  ]
+}
