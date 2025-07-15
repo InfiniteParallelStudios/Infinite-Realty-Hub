@@ -1,35 +1,59 @@
-﻿# Infinite Realty Hub Setup Repository - Ignore File
+﻿# Infinite Realty Hub - React Native Monorepo
 
-# Prevent creation of project structure files (these will be in separate repos)
-apps/
-packages/
-services/
-infrastructure/
-.github/
+# Dependencies
+node_modules/
+*/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
 
-# CI/CD files (not needed in setup repo)
-*.yml
-*.yaml
-.circleci/
-.travis.yml
-.azure-pipelines.yml
+# Expo
+.expo/
+dist/
+web-build/
+.expo-shared/
 
-# Project files (will be created in main project repo)
-*.tsx
-*.ts
-!scripts/*.ts
-!scripts/*.tsx
-tsconfig.json
-package.json
-!setup-package.json
+# React Native
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
 
-# IDE phantom file prevention
+# Metro
+.metro-health-check*
+
+# Debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# local env files
+.env*.local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# typescript
+*.tsbuildinfo
+
+# IDE
 .vscode/launch.json
 .vscode/tasks.json
+.vscode/*.code-snippets
 .idea/
+*.swp
+*.swo
 
 # OS generated files
-.DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
@@ -40,9 +64,6 @@ Thumbs.db
 # Logs
 logs
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # Runtime data
 pids
@@ -50,8 +71,17 @@ pids
 *.seed
 *.pid.lock
 
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
 # Dependency directories
-node_modules/
 jspm_packages/
 
 # Optional npm cache directory
@@ -60,13 +90,58 @@ jspm_packages/
 # Optional eslint cache
 .eslintcache
 
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
 # Temporary folders
 tmp/
 temp/
 
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# AWS
+.aws/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+.terraform.lock.hcl
+
+# Docker
+.dockerignore
+
+# Package build outputs
+packages/*/dist/
+packages/*/lib/
+services/*/dist/
+services/*/lib/
+
+# Android
+apps/mobile/android/app/build/
+apps/mobile/android/app/release/
+apps/mobile/android/gradle/
+apps/mobile/android/gradlew
+apps/mobile/android/gradlew.bat
+apps/mobile/android/local.properties
+
+# iOS
+apps/mobile/ios/build/
+apps/mobile/ios/Pods/
+apps/mobile/ios/*.xcworkspace
+apps/mobile/ios/*.xcuserdata
+
+# Fastlane
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+
+# CocoaPods
+**/Pods/
+node_modules

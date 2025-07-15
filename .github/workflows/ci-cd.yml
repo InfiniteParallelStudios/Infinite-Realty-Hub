@@ -1,0 +1,17 @@
+﻿# Placeholder CI/CD workflow to suppress VS Code phantom errors
+# This file will be properly configured later during Phase 1 implementation
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder step
+        run: echo "This is a placeholder workflow"
