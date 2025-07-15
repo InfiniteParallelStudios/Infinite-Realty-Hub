@@ -1,0 +1,72 @@
+﻿# Infinite Realty Hub Setup Repository - Ignore File
+
+# Prevent creation of project structure files (these will be in separate repos)
+apps/
+packages/
+services/
+infrastructure/
+.github/
+
+# CI/CD files (not needed in setup repo)
+*.yml
+*.yaml
+.circleci/
+.travis.yml
+.azure-pipelines.yml
+
+# Project files (will be created in main project repo)
+*.tsx
+*.ts
+!scripts/*.ts
+!scripts/*.tsx
+tsconfig.json
+package.json
+!setup-package.json
+
+# IDE phantom file prevention
+.vscode/launch.json
+.vscode/tasks.json
+.idea/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Temporary folders
+tmp/
+temp/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

@@ -141,12 +141,7 @@ main() {
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     
     # Check for platform-specific script
-    if [[ "$PLATFORM" == "macOS" ]] || [[ "$PLATFORM" == "Linux" ]]; then
-        SETUP_SCRIPT="$SCRIPT_DIR/scripts/setup-dev-env-macos.sh"
-    else
-        print_error "Unsupported platform: $PLATFORM"
-        exit 1
-    fi
+    SETUP_SCRIPT="$SCRIPT_DIR/scripts/setup-dev-env-macos.sh"
     
     if [[ ! -f "$SETUP_SCRIPT" ]]; then
         print_error "Setup script not found at: $SETUP_SCRIPT"
