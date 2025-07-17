@@ -1,17 +1,219 @@
-﻿# Placeholder CI/CD workflow to suppress VS Code phantom errors
-# This file will be properly configured later during Phase 1 implementation
-
-name: CI/CD Pipeline
+﻿name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
+
+env:
+  NODE_VERSION: '18'
+  CACHE_KEY_PREFIX: 'infinite-realty-hub'
 
 jobs:
-  placeholder:
+  # Job 1: Code Quality & Linting
+  code-quality:
+    name: Code Quality
     runs-on: ubuntu-latest
     steps:
-      - name: Placeholder step
-        run: echo "This is a placeholder workflow"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Check Prettier formatting
+        run: npm run prettier:check || (echo "Code formatting issues found. Run 'npm run lint:fix' to fix them." && exit 1)
+
+      - name: TypeScript compilation check
+        run: npm run type-check
+
+  # Job 2: Security Scanning
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        run: npm audit --audit-level=high
+
+      - name: Run dependency vulnerability check
+        uses: actions/dependency-review-action@v3
+        if: github.event_name == 'pull_request'
+
+  # Job 3: Package Tests
+  test-packages:
+    name: Test Packages
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: [shared, core-types, utils, ui-components, api-client]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build package
+        run: npm run build --workspace=packages/${{ matrix.package }}
+
+      - name: Run tests
+        run: npm run test --workspace=packages/${{ matrix.package }}
+        continue-on-error: false
+
+  # Job 4: API Service Tests
+  test-api:
+    name: Test API Service
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: infinite_realty_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build API service
+        run: npm run build --workspace=services/api
+
+      - name: Run API tests
+        run: npm run test --workspace=services/api
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/infinite_realty_test
+          NODE_ENV: test
+
+  # Job 5: Mobile App Tests
+  test-mobile:
+    name: Test Mobile App
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run mobile tests
+        run: npm run test --workspace=apps/mobile
+
+      - name: Run mobile type check
+        run: npm run type-check --workspace=apps/mobile
+
+  # Job 6: Build Verification
+  build-verification:
+    name: Build Verification
+    runs-on: ubuntu-latest
+    needs: [code-quality, security, test-packages, test-api, test-mobile]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build all packages
+        run: npm run build:packages
+
+      - name: Build all apps
+        run: npm run build:apps
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            packages/*/dist
+            apps/*/dist
+          retention-days: 7
+
+  # Job 7: Deploy to Staging (only on main branch)
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [build-verification]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+
+      - name: Deploy to staging environment
+        run: |
+          echo "🚀 Deploying to staging environment..."
+          echo "This will be implemented with actual deployment scripts"
+          # Future: Deploy to AWS/staging environment
+
+      - name: Run staging health check
+        run: |
+          echo "🔍 Running staging health check..."
+          echo "This will be implemented with actual health check scripts"
+          # Future: Verify staging deployment
+
+      - name: Notify deployment success
+        if: success()
+        run: |
+          echo "✅ Staging deployment successful!"
+          # Future: Send Slack/Discord notification

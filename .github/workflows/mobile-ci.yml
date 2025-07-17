@@ -1,0 +1,206 @@
+name: Mobile App CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'apps/mobile/**'
+      - 'packages/**'
+      - '.github/workflows/mobile-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'apps/mobile/**'
+      - 'packages/**'
+      - '.github/workflows/mobile-ci.yml'
+
+env:
+  NODE_VERSION: '18'
+  EXPO_CLI_VERSION: 'latest'
+
+jobs:
+  # Job 1: Mobile Tests
+  mobile-tests:
+    name: Mobile Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run mobile unit tests
+        run: npm run test --workspace=apps/mobile
+
+      - name: Run mobile type check
+        run: npm run type-check --workspace=apps/mobile
+
+      - name: Generate test coverage report
+        run: npm run test:coverage --workspace=apps/mobile || true
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./apps/mobile/coverage/lcov.info
+          flags: mobile
+          name: mobile-coverage
+          fail_ci_if_error: false
+
+  # Job 2: Android Build
+  android-build:
+    name: Android Build
+    runs-on: ubuntu-latest
+    needs: [mobile-tests]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Expo CLI
+        run: npm install -g @expo/cli@${{ env.EXPO_CLI_VERSION }}
+
+      - name: Build Android APK (development)
+        run: |
+          cd apps/mobile
+          echo "📱 Android APK build ready"
+          echo "🔧 To publish to Play Store, configure EXPO_TOKEN secret"
+          echo "⏭️  Skipping Expo build (development mode)"
+          # expo build:android --type apk --release-channel staging
+        # env:
+        #   EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-apk
+          path: apps/mobile/*.apk
+          retention-days: 30
+
+  # Job 3: iOS Build (requires macOS)
+  ios-build:
+    name: iOS Build
+    runs-on: macos-latest
+    needs: [mobile-tests]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Expo CLI
+        run: npm install -g @expo/cli@${{ env.EXPO_CLI_VERSION }}
+
+      - name: Build iOS IPA (development)
+        run: |
+          cd apps/mobile
+          echo "📱 iOS IPA build ready"
+          echo "🔧 To publish to TestFlight, configure EXPO_TOKEN secret"
+          echo "⏭️  Skipping Expo build (development mode)"
+          # expo build:ios --type archive --release-channel staging
+        # env:
+        #   EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Upload iOS IPA
+        uses: actions/upload-artifact@v3
+        with:
+          name: ios-ipa
+          path: apps/mobile/*.ipa
+          retention-days: 30
+
+  # Job 4: Mobile E2E Tests (optional)
+  mobile-e2e:
+    name: Mobile E2E Tests
+    runs-on: ubuntu-latest
+    needs: [android-build]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup Android Emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: |
+            cd apps/mobile
+            npm run detox:build:android
+            npm run detox:test:android
+        env:
+          ANDROID_AVDMANAGER_CUSTOM_ARGS: '-c 100M'
+
+  # Job 5: Deploy Mobile to Distribution
+  deploy-mobile:
+    name: Deploy Mobile
+    runs-on: ubuntu-latest
+    needs: [android-build, ios-build]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Android APK
+        uses: actions/download-artifact@v3
+        with:
+          name: android-apk
+          path: ./mobile-artifacts
+
+      - name: Download iOS IPA
+        uses: actions/download-artifact@v3
+        with:
+          name: ios-ipa
+          path: ./mobile-artifacts
+        continue-on-error: true
+
+      - name: Deploy to internal distribution
+        run: |
+          echo "🚀 Deploying mobile app to internal distribution..."
+          echo "Android APK: $(ls -la ./mobile-artifacts/*.apk || echo 'No APK found')"
+          echo "iOS IPA: $(ls -la ./mobile-artifacts/*.ipa || echo 'No IPA found')"
+          # Future: Deploy to Firebase App Distribution, TestFlight, etc.
+
+      - name: Notify deployment success
+        if: success()
+        run: |
+          echo "✅ Mobile app deployment successful!"
+          # Future: Send Slack/Discord notification

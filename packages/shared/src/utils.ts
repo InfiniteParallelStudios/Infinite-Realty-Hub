@@ -3,7 +3,10 @@ import { format, parseISO, formatDistanceToNow } from 'date-fns';
 /**
  * Format a date string to a readable format
  */
-export const formatDate = (date: string | Date, formatStr = 'MMM dd, yyyy'): string => {
+export const formatDate = (
+  date: string | Date,
+  formatStr = 'MMM dd, yyyy'
+): string => {
   const dateObj = typeof date === 'string' ? parseISO(date) : date;
   return format(dateObj, formatStr);
 };
@@ -46,8 +49,9 @@ export const formatCurrency = (amount: number): string => {
  * Capitalize first letter of each word
  */
 export const capitalizeWords = (str: string): string => {
-  return str.replace(/\w\S*/g, txt =>
-    txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+  return str.replace(
+    /\w\S*/g,
+    txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
   );
 };
 

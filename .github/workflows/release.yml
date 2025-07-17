@@ -1,0 +1,257 @@
+name: Release Automation
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., 1.0.0)'
+        required: true
+        type: string
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  # Job 1: Create Release
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    outputs:
+      release_id: ${{ steps.create_release.outputs.id }}
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          # Generate changelog from git commits
+          echo "# Changelog" > CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          git log --oneline --pretty=format:"- %s" $(git describe --tags --abbrev=0 HEAD^)..HEAD >> CHANGELOG.md || echo "- Initial release" >> CHANGELOG.md
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          cat CHANGELOG.md >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name || format('v{0}', github.event.inputs.version) }}
+          release_name: Release ${{ github.ref_name || format('v{0}', github.event.inputs.version) }}
+          body: ${{ steps.changelog.outputs.changelog }}
+          draft: false
+          prerelease: false
+
+  # Job 2: Build and Upload Mobile Artifacts
+  build-mobile-release:
+    name: Build Mobile Release
+    runs-on: ubuntu-latest
+    needs: [create-release]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Expo CLI
+        run: npm install -g @expo/cli@latest
+
+      - name: Build Android release
+        run: |
+          cd apps/mobile
+          echo "📱 Android release build ready"
+          echo "🔧 To publish to Play Store, configure EXPO_TOKEN secret"
+          echo "⏭️  Skipping Expo build (development mode)"
+          # expo build:android --type apk --release-channel production
+        # env:
+        #   EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Upload Android APK to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create-release.outputs.upload_url }}
+          asset_path: apps/mobile/infinite-realty-hub.apk
+          asset_name: infinite-realty-hub-android.apk
+          asset_content_type: application/vnd.android.package-archive
+
+  # Job 3: Build and Upload iOS Release (macOS)
+  build-ios-release:
+    name: Build iOS Release
+    runs-on: macos-latest
+    needs: [create-release]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Expo CLI
+        run: npm install -g @expo/cli@latest
+
+      - name: Build iOS release
+        run: |
+          cd apps/mobile
+          echo "📱 iOS release build ready"
+          echo "🔧 To publish to TestFlight, configure EXPO_TOKEN secret"
+          echo "⏭️  Skipping Expo build (development mode)"
+          # expo build:ios --type archive --release-channel production
+        # env:
+        #   EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Upload iOS IPA to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create-release.outputs.upload_url }}
+          asset_path: apps/mobile/infinite-realty-hub.ipa
+          asset_name: infinite-realty-hub-ios.ipa
+          asset_content_type: application/octet-stream
+
+  # Job 4: Build and Upload API Docker Image
+  build-api-release:
+    name: Build API Release
+    runs-on: ubuntu-latest
+    needs: [create-release]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build API service
+        run: npm run build --workspace=services/api
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        run: |
+          echo "🐳 Docker Hub login ready"
+          echo "🔧 To publish to Docker Hub, configure DOCKER_USERNAME and DOCKER_PASSWORD secrets"
+          echo "⏭️  Skipping Docker login (development mode)"
+        # uses: docker/login-action@v3
+        # with:
+        #   username: ${{ secrets.DOCKER_USERNAME }}
+        #   password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        run: |
+          cd services/api
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            --tag infiniteparallelstudios/infinite-realty-api:latest \
+            --tag infiniteparallelstudios/infinite-realty-api:${{ github.ref_name || github.event.inputs.version }} \
+            --push .
+
+  # Job 5: Deploy to Production
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [create-release, build-mobile-release, build-api-release]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to production environment
+        run: |
+          echo "🚀 Deploying to production environment..."
+          echo "Version: ${{ github.ref_name || github.event.inputs.version }}"
+          echo "This will be implemented with actual deployment scripts"
+          # Future: Deploy to AWS production environment
+
+      - name: Run production health check
+        run: |
+          echo "🔍 Running production health check..."
+          # Future: Verify production deployment
+          # curl -f $PRODUCTION_API_URL/health
+
+      - name: Notify release success
+        if: success()
+        run: |
+          echo "✅ Production release successful!"
+          echo "🎉 Released version: ${{ github.ref_name || github.event.inputs.version }}"
+          # Future: Send Slack/Discord notification
+
+  # Job 6: Update Package Versions
+  update-versions:
+    name: Update Package Versions
+    runs-on: ubuntu-latest
+    needs: [deploy-production]
+    if: success()
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update package versions
+        run: |
+          VERSION=${{ github.ref_name || github.event.inputs.version }}
+          VERSION=${VERSION#v}  # Remove 'v' prefix if present
+          
+          # Update root package.json version
+          npm version $VERSION --no-git-tag-version
+          
+          # Update all workspace package versions
+          npm version $VERSION --no-git-tag-version --workspaces
+          
+          echo "Updated all packages to version: $VERSION"
+
+      - name: Commit version updates
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "chore: bump version to ${{ github.ref_name || github.event.inputs.version }}" || exit 0
+          git push

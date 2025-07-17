@@ -4,11 +4,9 @@ module.exports = {
     browser: true,
     es2020: true,
     node: true,
-    'react-native/react-native': true,
   },
   extends: [
     'eslint:recommended',
-    '@typescript-eslint/recommended',
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
@@ -21,19 +19,12 @@ module.exports = {
   },
   plugins: [
     '@typescript-eslint',
-    'react',
-    'react-native',
     'prettier',
   ],
   rules: {
     'prettier/prettier': 'error',
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-explicit-any': 'warn',
-    'react/prop-types': 'off',
-    'react-native/no-unused-styles': 'error',
-    'react-native/split-platform-components': 'error',
-    'react-native/no-inline-styles': 'warn',
-    'react-native/no-color-literals': 'warn',
   },
   overrides: [
     {

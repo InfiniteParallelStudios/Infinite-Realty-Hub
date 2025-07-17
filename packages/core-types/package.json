@@ -1,7 +1,7 @@
 {
-  "name": "@infinite-realty-hub/types",
+  "name": "@infinite-realty-hub/core-types",
   "version": "1.0.0",
-  "description": "TypeScript type definitions for Infinite Realty Hub",
+  "description": "Core TypeScript type definitions for Infinite Realty Hub",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

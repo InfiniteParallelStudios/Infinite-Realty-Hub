@@ -15,11 +15,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "composite": true,
     "baseUrl": ".",
     "paths": {
       "@shared/*": ["./packages/shared/src/*"],
-      "@ui/*": ["./packages/ui/src/*"],
-      "@types/*": ["./packages/types/src/*"],
+      "@ui-components/*": ["./packages/ui-components/src/*"],
+      "@core-types/*": ["./packages/core-types/src/*"],
+      "@utils/*": ["./packages/utils/src/*"],
       "@api-client/*": ["./packages/api-client/src/*"]
     }
   },
@@ -34,5 +36,13 @@
     "dist",
     "build",
     "apps/**/*"
+  ],
+  "references": [
+    { "path": "./packages/shared" },
+    { "path": "./packages/core-types" },
+    { "path": "./packages/utils" },
+    { "path": "./packages/ui-components" },
+    { "path": "./packages/api-client" },
+    { "path": "./services/api" }
   ]
 }

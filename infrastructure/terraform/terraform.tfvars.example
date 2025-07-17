@@ -1,0 +1,68 @@
+# Terraform Variables Example
+# Copy this file to terraform.tfvars and update with your values
+
+# Basic Configuration
+aws_region  = "us-east-1"
+environment = "staging"
+app_name    = "infinite-realty-hub"
+
+# Domain Configuration
+domain_name = "infinite-realty-hub.com"
+
+# Database Configuration
+db_password           = "your-secure-database-password-here"
+db_instance_class     = "db.t3.micro"
+db_allocated_storage  = 20
+backup_retention_period = 7
+backup_window         = "03:00-04:00"
+maintenance_window    = "sun:04:00-sun:05:00"
+
+# Cache Configuration
+cache_node_type = "cache.t3.micro"
+
+# ECS Configuration
+ecs_cpu           = 256
+ecs_memory        = 512
+ecs_desired_count = 1
+
+# Logging Configuration
+log_retention_days = 7
+
+# Feature Flags
+enable_waf                    = true
+enable_cloudfront            = true
+enable_container_insights    = true
+enable_deletion_protection   = false
+enable_multi_az             = false
+enable_performance_insights = false
+
+# SSL Certificate (Optional)
+# ssl_certificate_arn = "arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012"
+
+# Additional Tags
+tags = {
+  Owner       = "DevOps Team"
+  CostCenter  = "Engineering"
+  Project     = "Infinite Realty Hub"
+  Environment = "Staging"
+}
+
+# Examples for different environments:
+
+# Development Environment
+# environment = "development"
+# ecs_desired_count = 1
+# enable_multi_az = false
+# enable_deletion_protection = false
+# log_retention_days = 3
+
+# Production Environment
+# environment = "production"
+# ecs_desired_count = 2
+# enable_multi_az = true
+# enable_deletion_protection = true
+# enable_performance_insights = true
+# log_retention_days = 30
+# db_instance_class = "db.t3.small"
+# cache_node_type = "cache.t3.small"
+# backup_retention_period = 30
