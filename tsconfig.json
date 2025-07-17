@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": ["DOM", "DOM.Iterable", "ES6"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES6"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,11 +22,21 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@shared/*": ["./packages/shared/src/*"],
-      "@ui-components/*": ["./packages/ui-components/src/*"],
-      "@core-types/*": ["./packages/core-types/src/*"],
-      "@utils/*": ["./packages/utils/src/*"],
-      "@api-client/*": ["./packages/api-client/src/*"]
+      "@shared/*": [
+        "./packages/shared/src/*"
+      ],
+      "@ui-components/*": [
+        "./packages/ui-components/src/*"
+      ],
+      "@core-types/*": [
+        "./packages/core-types/src/*"
+      ],
+      "@utils/*": [
+        "./packages/utils/src/*"
+      ],
+      "@api-client/*": [
+        "./packages/api-client/src/*"
+      ]
     }
   },
   "include": [
@@ -38,11 +52,24 @@
     "apps/**/*"
   ],
   "references": [
-    { "path": "./packages/shared" },
-    { "path": "./packages/core-types" },
-    { "path": "./packages/utils" },
-    { "path": "./packages/ui-components" },
-    { "path": "./packages/api-client" },
-    { "path": "./services/api" }
-  ]
+    {
+      "path": "./packages/shared"
+    },
+    {
+      "path": "./packages/core-types"
+    },
+    {
+      "path": "./packages/utils"
+    },
+    {
+      "path": "./packages/ui-components"
+    },
+    {
+      "path": "./packages/api-client"
+    },
+    {
+      "path": "./services/api"
+    }
+  ],
+  "extends": "expo/tsconfig.base"
 }

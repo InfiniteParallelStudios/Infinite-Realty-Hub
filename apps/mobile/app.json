@@ -21,9 +21,7 @@
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
-    "plugins": [
-      "expo-router"
-    ],
+    
     "scheme": "infinite-realty-hub",
     "experiments": {
       "typedRoutes": true
