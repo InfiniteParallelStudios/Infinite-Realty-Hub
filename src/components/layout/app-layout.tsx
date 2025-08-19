@@ -18,7 +18,8 @@ export function AppLayout({ children }: AppLayoutProps) {
   const isAuthPage = authPages.some(page => pathname.startsWith(page))
   
   // Show navigation if user is authenticated and not on auth pages
-  const showNavigation = user && !isAuthPage && !loading
+  // Temporarily always show navigation for testing
+  const showNavigation = !isAuthPage && !loading
 
   return (
     <div className="min-h-screen bg-jarvis-light dark:bg-jarvis-hud transition-colors duration-300 relative">

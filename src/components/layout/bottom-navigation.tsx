@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { LayoutDashboard, Users, Store, Settings } from 'lucide-react'
+import { LayoutDashboard, Users, Store, Settings, Bug } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
@@ -24,6 +24,12 @@ const navItems = [
     icon: Store,
     label: 'Store',
     id: 'store'
+  },
+  {
+    href: '/testing',
+    icon: Bug,
+    label: 'Testing',
+    id: 'testing'
   },
   {
     href: '/settings',
