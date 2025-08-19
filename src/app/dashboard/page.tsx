@@ -109,10 +109,35 @@ export default function DashboardPage() {
         </div>
       </GlassCard>
 
-      {/* Coming Soon Widgets */}
+      {/* Feature Widgets */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3 }}
+        >
+          <motion.a
+            href="/contacts"
+            className="block h-48"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <GlassCard className="h-full flex flex-col justify-center items-center text-center cursor-pointer hover:shadow-lg hover:shadow-cyan-500/20 transition-shadow">
+              <Users className="w-12 h-12 text-cyan-400 mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                CRM Module
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Manage your contacts and leads
+              </p>
+              <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-sm">
+                Available Now
+              </span>
+            </GlassCard>
+          </motion.a>
+        </motion.div>
+
         {[
-          { title: 'CRM Module', subtitle: 'Manage your contacts', status: 'Coming Soon' },
           { title: 'Lead Pipeline', subtitle: 'Track your deals', status: 'Coming Soon' },
           { title: 'Market Data', subtitle: 'Local market insights', status: 'Coming Soon' },
         ].map((widget, index) => (
@@ -120,7 +145,7 @@ export default function DashboardPage() {
             key={widget.title}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 + index * 0.1 }}
+            transition={{ delay: 0.4 + index * 0.1 }}
           >
             <GlassCard className="h-48 flex flex-col justify-center items-center text-center">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
