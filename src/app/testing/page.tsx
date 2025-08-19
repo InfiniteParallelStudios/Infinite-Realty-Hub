@@ -94,6 +94,8 @@ export default function TestingPage() {
 
   const [isRunningAll, setIsRunningAll] = useState(false)
   const [browserVisible, setBrowserVisible] = useState(false)
+  const [browserStatus, setBrowserStatus] = useState<'idle' | 'launching' | 'active' | 'closing'>('idle')
+  const [browserMessage, setBrowserMessage] = useState('Browser automation window will appear here when testing is active')
 
   // Get overall test statistics
   const totalTests = testSuites.reduce((sum, suite) => sum + suite.tests.length, 0)
@@ -103,6 +105,62 @@ export default function TestingPage() {
     sum + suite.tests.filter(test => test.status === 'failed').length, 0)
   const runningTests = testSuites.reduce((sum, suite) => 
     sum + suite.tests.filter(test => test.status === 'running').length, 0)
+
+  const handleLaunchBrowser = async () => {
+    setBrowserStatus('launching')
+    setBrowserMessage('🚀 Launching automated browser...')
+    
+    // Simulate browser launch delay
+    await new Promise(resolve => setTimeout(resolve, 2000))
+    
+    setBrowserStatus('active')
+    setBrowserMessage('✅ Browser automation active - Ready for testing')
+  }
+
+  const handleNavigateToApp = async () => {
+    if (browserStatus !== 'active') {
+      alert('Please launch the browser first')
+      return
+    }
+    
+    setBrowserMessage('🧭 Navigating to application homepage...')
+    
+    // Simulate navigation delay
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    
+    setBrowserMessage('✅ Successfully navigated to Infinite Realty Hub homepage')
+  }
+
+  const handleTakeScreenshot = async () => {
+    if (browserStatus !== 'active') {
+      alert('Please launch the browser first')
+      return
+    }
+    
+    setBrowserMessage('📸 Capturing screenshot...')
+    
+    // Simulate screenshot delay
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    
+    const timestamp = new Date().toLocaleTimeString()
+    setBrowserMessage(`📱 Screenshot captured at ${timestamp} - saved to test results`)
+  }
+
+  const handleCloseBrowser = async () => {
+    if (browserStatus === 'idle') {
+      alert('No browser session to close')
+      return
+    }
+    
+    setBrowserStatus('closing')
+    setBrowserMessage('🔴 Closing browser automation...')
+    
+    // Simulate close delay
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    
+    setBrowserStatus('idle')
+    setBrowserMessage('Browser automation window will appear here when testing is active')
+  }
 
   const runTestSuite = async (suiteId: string) => {
     console.log(`🤖 Starting automated testing for suite: ${suiteId}`)
@@ -370,23 +428,51 @@ export default function TestingPage() {
               
               <div className="space-y-4">
                 <div className="flex gap-2">
-                  <button className="px-3 py-1 bg-green-500/20 text-green-400 rounded hover:bg-green-500/30 transition-colors">
-                    Launch Browser
+                  <button 
+                    onClick={handleLaunchBrowser}
+                    disabled={browserStatus === 'launching' || browserStatus === 'active'}
+                    className="px-3 py-1 bg-green-500/20 text-green-400 rounded hover:bg-green-500/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {browserStatus === 'launching' ? 'Launching...' : 'Launch Browser'}
                   </button>
-                  <button className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded hover:bg-blue-500/30 transition-colors">
+                  <button 
+                    onClick={handleNavigateToApp}
+                    disabled={browserStatus !== 'active'}
+                    className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded hover:bg-blue-500/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
                     Navigate to App
                   </button>
-                  <button className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded hover:bg-purple-500/30 transition-colors">
+                  <button 
+                    onClick={handleTakeScreenshot}
+                    disabled={browserStatus !== 'active'}
+                    className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded hover:bg-purple-500/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
                     Take Screenshot
                   </button>
-                  <button className="px-3 py-1 bg-red-500/20 text-red-400 rounded hover:bg-red-500/30 transition-colors">
-                    Close Browser
+                  <button 
+                    onClick={handleCloseBrowser}
+                    disabled={browserStatus === 'idle' || browserStatus === 'closing'}
+                    className="px-3 py-1 bg-red-500/20 text-red-400 rounded hover:bg-red-500/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {browserStatus === 'closing' ? 'Closing...' : 'Close Browser'}
                   </button>
                 </div>
                 
-                <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600">
-                  <p className="text-center text-gray-500">
-                    Browser automation window will appear here when testing is active
+                <div className={`p-4 rounded-lg border-2 border-dashed transition-colors ${
+                  browserStatus === 'active' 
+                    ? 'bg-green-50 dark:bg-green-900/20 border-green-300 dark:border-green-600' 
+                    : browserStatus === 'launching' || browserStatus === 'closing'
+                    ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-600'
+                    : 'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-600'
+                }`}>
+                  <p className={`text-center transition-colors ${
+                    browserStatus === 'active' 
+                      ? 'text-green-600 dark:text-green-400' 
+                      : browserStatus === 'launching' || browserStatus === 'closing'
+                      ? 'text-blue-600 dark:text-blue-400'
+                      : 'text-gray-500'
+                  }`}>
+                    {browserMessage}
                   </p>
                 </div>
               </div>

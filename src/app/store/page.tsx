@@ -4,8 +4,25 @@ import { GlassCard } from '@/components/ui/glass-card'
 import { ProtectedRoute } from '@/components/auth/protected-route'
 import { motion } from 'framer-motion'
 import { ShoppingBag, Star, Download } from 'lucide-react'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function StorePage() {
+  const router = useRouter()
+  const [subscribedApps, setSubscribedApps] = useState<string[]>([])
+
+  const handleSubscribe = (appId: string, appName: string) => {
+    if (appId === 'crm') {
+      // CRM module - redirect to billing for subscription
+      if (confirm(`Subscribe to ${appName}? This will redirect you to billing to complete the subscription.`)) {
+        router.push('/settings/billing')
+      }
+    } else {
+      // For other apps that might become available
+      alert(`Starting subscription process for ${appName}. This would open a payment flow in a real application.`)
+    }
+  }
+
   const apps = [
     {
       id: 'crm',
@@ -121,6 +138,7 @@ export default function StorePage() {
 
                 {/* Action Button */}
                 <button
+                  onClick={() => app.status === 'available' && handleSubscribe(app.id, app.name)}
                   className={`w-full py-3 px-4 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2 ${
                     app.status === 'available'
                       ? 'bg-hud-blue hover:bg-hud-electric text-white shadow-hud-glow'

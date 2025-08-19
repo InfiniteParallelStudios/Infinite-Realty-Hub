@@ -1,0 +1,37 @@
+<svg width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="background" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000811"/>
+      <stop offset="100%" stop-color="#001122"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="1"/>
+      <stop offset="70%" stop-color="#00d4ff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.3"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="36" cy="36" r="36" fill="url(#background)"/>
+  
+  <!-- Infinity symbol -->
+  <path 
+    d="M 14.4 36 
+       C 14.4 25.2, 25.2 18, 36 36
+       C 46.800000000000004 54, 57.6 46.800000000000004, 57.6 36
+       C 57.6 25.2, 46.800000000000004 18, 36 36
+       C 25.2 54, 14.4 46.800000000000004, 14.4 36"
+    fill="none" 
+    stroke="url(#glow)" 
+    stroke-width="2.88" 
+    stroke-linecap="round"
+  />
+  
+  <!-- Glowing orbs -->
+  <circle cx="21.599999999999998" cy="36" r="2.16" fill="#00d4ff" opacity="0.8">
+    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="50.4" cy="36" r="2.16" fill="#00d4ff" opacity="0.8">
+    <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+</svg>

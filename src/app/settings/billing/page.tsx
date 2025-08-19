@@ -9,6 +9,21 @@ import { CreditCard, Star, Download, Calendar, Check, Users, BarChart3, Crown } 
 export default function BillingSettingsPage() {
   const [currentPlan] = useState('professional')
   const [billingCycle, setBillingCycle] = useState('monthly')
+  const [paymentMethodsState, setPaymentMethodsState] = useState([])
+
+  const handleSetAsDefault = (methodId: string) => {
+    alert(`Setting payment method ${methodId} as default. This would update the payment method in a real application.`)
+  }
+
+  const handleEditPaymentMethod = (methodId: string) => {
+    alert(`Opening edit dialog for payment method ${methodId}. This would show an edit form in a real application.`)
+  }
+
+  const handleRemovePaymentMethod = (methodId: string) => {
+    if (confirm('Are you sure you want to remove this payment method?')) {
+      alert(`Removing payment method ${methodId}. This would delete the payment method in a real application.`)
+    }
+  }
 
   const plans = [
     {
@@ -322,14 +337,23 @@ export default function BillingSettingsPage() {
                 
                 <div className="flex items-center gap-2">
                   {!method.default && (
-                    <button className="text-sm text-cyan-400 hover:text-cyan-300">
+                    <button 
+                      onClick={() => handleSetAsDefault(method.id)}
+                      className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+                    >
                       Set as Default
                     </button>
                   )}
-                  <button className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                  <button 
+                    onClick={() => handleEditPaymentMethod(method.id)}
+                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                  >
                     Edit
                   </button>
-                  <button className="text-sm text-red-500 hover:text-red-600">
+                  <button 
+                    onClick={() => handleRemovePaymentMethod(method.id)}
+                    className="text-sm text-red-500 hover:text-red-600 transition-colors"
+                  >
                     Remove
                   </button>
                 </div>

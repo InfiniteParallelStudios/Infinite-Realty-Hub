@@ -5,8 +5,105 @@ import { ProtectedRoute } from '@/components/auth/protected-route'
 import { motion } from 'framer-motion'
 import { User, Palette, Bell, Shield, CreditCard, HelpCircle, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
+import { useState } from 'react'
 
 export default function SettingsPage() {
+  const [showModal, setShowModal] = useState(false)
+  const [modalContent, setModalContent] = useState({ title: '', content: '' })
+
+  const handlePrivacyPolicy = () => {
+    setModalContent({
+      title: 'Privacy Policy',
+      content: `Last updated: August 2025
+
+At Infinite Realty Hub, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your information.
+
+Information We Collect:
+• Personal information (name, email, phone number)
+• Professional details (license number, brokerage)
+• Usage data and analytics
+• Contact and lead information you input
+
+How We Use Your Information:
+• To provide and improve our services
+• To communicate with you about your account
+• To analyze usage patterns and improve functionality
+• To comply with legal obligations
+
+Data Security:
+We use industry-standard encryption and security measures to protect your data. Your information is stored securely and is never shared with third parties without your consent.
+
+Contact Us:
+If you have questions about this Privacy Policy, please contact us at privacy@infiniterealtyhub.com`
+    })
+    setShowModal(true)
+  }
+
+  const handleTermsOfService = () => {
+    setModalContent({
+      title: 'Terms of Service',
+      content: `Last updated: August 2025
+
+Welcome to Infinite Realty Hub. By using our service, you agree to these terms.
+
+Acceptable Use:
+• Use the service only for lawful real estate business purposes
+• Do not share your account credentials
+• Respect the intellectual property rights of others
+• Do not attempt to access unauthorized areas
+
+Service Availability:
+• We strive for 99.9% uptime but cannot guarantee uninterrupted service
+• Scheduled maintenance will be announced in advance
+• Beta features may have limited availability
+
+Account Responsibilities:
+• You are responsible for maintaining the confidentiality of your account
+• You must provide accurate and current information
+• You are responsible for all activities under your account
+
+Limitation of Liability:
+Infinite Realty Hub is provided "as is" without warranties of any kind. We are not liable for any damages arising from the use of our service.
+
+Contact Us:
+For questions about these Terms, contact us at legal@infiniterealtyhub.com`
+    })
+    setShowModal(true)
+  }
+
+  const handleAbout = () => {
+    setModalContent({
+      title: 'About Infinite Realty Hub',
+      content: `Infinite Realty Hub v1.0.0 Beta
+
+Infinite Realty Hub is an AI-powered real estate platform designed to streamline your business operations and boost productivity.
+
+Key Features:
+• CRM & Contact Management
+• Lead Pipeline Tracking
+• Market Analytics & Insights
+• AI-Powered Recommendations
+• Document Management
+• Transaction Tracking
+
+Our Mission:
+To empower real estate professionals with cutting-edge technology that simplifies complex workflows and drives business growth.
+
+Technology Stack:
+• Next.js 15 with App Router
+• Supabase for backend services
+• Tailwind CSS for styling
+• Framer Motion for animations
+• Modern React patterns
+
+Development Team:
+Built with passion by developers who understand the real estate industry.
+
+Support:
+For technical support or feature requests, visit our support center or contact us at support@infiniterealtyhub.com`
+    })
+    setShowModal(true)
+  }
 
   const settingsSections = [
     {
@@ -118,19 +215,57 @@ export default function SettingsPage() {
             Version 1.0.0 Beta
           </p>
           <div className="flex justify-center space-x-4 text-sm">
-            <button className="text-cyan-400 hover:text-cyan-300 transition-colors">
+            <button 
+              onClick={handlePrivacyPolicy}
+              className="text-cyan-400 hover:text-cyan-300 transition-colors"
+            >
               Privacy Policy
             </button>
-            <button className="text-cyan-400 hover:text-cyan-300 transition-colors">
+            <button 
+              onClick={handleTermsOfService}
+              className="text-cyan-400 hover:text-cyan-300 transition-colors"
+            >
               Terms of Service
             </button>
-            <button className="text-cyan-400 hover:text-cyan-300 transition-colors">
+            <button 
+              onClick={handleAbout}
+              className="text-cyan-400 hover:text-cyan-300 transition-colors"
+            >
               About
             </button>
           </div>
         </div>
       </GlassCard>
       </div>
+
+      {/* Modal for Privacy Policy, Terms, and About */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="bg-white dark:bg-gray-900 rounded-xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto border border-gray-200 dark:border-gray-800"
+          >
+            <div className="mb-4">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                {modalContent.title}
+              </h3>
+              <div className="text-gray-600 dark:text-gray-400 whitespace-pre-line text-sm leading-relaxed">
+                {modalContent.content}
+              </div>
+            </div>
+            <div className="flex justify-end">
+              <button
+                onClick={() => setShowModal(false)}
+                className="px-6 py-2 bg-cyan-500 hover:bg-cyan-400 text-white rounded-lg transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </ProtectedRoute>
   )
 }

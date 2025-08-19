@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { LayoutDashboard, Users, Store, Settings, Bug } from 'lucide-react'
+import { LayoutDashboard, Users, Store, Settings, Bug, QrCode } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
@@ -20,16 +20,10 @@ const navItems = [
     id: 'contacts'
   },
   {
-    href: '/store',
-    icon: Store,
-    label: 'Store',
-    id: 'store'
-  },
-  {
-    href: '/testing',
-    icon: Bug,
-    label: 'Testing',
-    id: 'testing'
+    href: '/qr-generator',
+    icon: QrCode,
+    label: 'QR Codes',
+    id: 'qr-generator'
   },
   {
     href: '/settings',
@@ -48,7 +42,7 @@ export function BottomNavigation() {
       <div className="absolute inset-0 backdrop-blur-xl bg-white/10 dark:bg-hud-panel border-t border-white/20 dark:border-glass-border shadow-hud-panel" />
       
       {/* Navigation Content */}
-      <div className="relative flex items-center justify-around px-6 py-4">
+      <div className="relative flex items-center justify-around px-4 py-3 sm:px-6 sm:py-4">
         {navItems.map((item) => {
           const Icon = item.icon
           const isActive = pathname.startsWith(item.href)
@@ -57,7 +51,7 @@ export function BottomNavigation() {
             <Link
               key={item.id}
               href={item.href}
-              className="relative flex flex-col items-center space-y-1 px-4 py-2 rounded-xl transition-colors"
+              className="relative flex flex-col items-center space-y-1 px-2 py-2 sm:px-4 rounded-xl transition-colors min-w-[60px] touch-manipulation"
             >
               {/* Active Background */}
               {isActive && (
@@ -72,7 +66,7 @@ export function BottomNavigation() {
               <div className="relative">
                 <Icon
                   className={cn(
-                    "w-6 h-6 transition-colors",
+                    "w-5 h-5 sm:w-6 sm:h-6 transition-colors",
                     isActive 
                       ? "text-cyan-500 dark:text-cyan-400" 
                       : "text-gray-600 dark:text-gray-400"
@@ -92,7 +86,7 @@ export function BottomNavigation() {
               {/* Label */}
               <span
                 className={cn(
-                  "text-xs font-medium transition-colors",
+                  "text-[10px] sm:text-xs font-medium transition-colors leading-tight",
                   isActive
                     ? "text-cyan-500 dark:text-cyan-400"
                     : "text-gray-600 dark:text-gray-400"

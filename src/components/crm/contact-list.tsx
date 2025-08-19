@@ -38,9 +38,10 @@ interface Contact {
 interface ContactListProps {
   searchQuery: string
   filterType: string
+  onEditContact?: (contact: Contact) => void
 }
 
-export function ContactList({ searchQuery, filterType }: ContactListProps) {
+export function ContactList({ searchQuery, filterType, onEditContact }: ContactListProps) {
   const { user } = useAuth()
   const [contacts, setContacts] = useState<Contact[]>([])
   const [loading, setLoading] = useState(true)
@@ -314,16 +315,33 @@ export function ContactList({ searchQuery, filterType }: ContactListProps) {
                     
                     {/* Quick Actions */}
                     <div className="mt-4 flex gap-2">
-                      <button className="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-lg hover:bg-cyan-500/30 transition-colors text-sm">
+                      <button 
+                        onClick={() => onEditContact?.(contact)}
+                        className="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-lg hover:bg-cyan-500/30 transition-colors text-sm"
+                      >
                         Edit
                       </button>
-                      <button className="px-3 py-1 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-colors text-sm">
+                      <button 
+                        onClick={() => window.open(`tel:${contact.phone || contact.mobile}`)}
+                        className="px-3 py-1 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-colors text-sm"
+                        disabled={!contact.phone && !contact.mobile}
+                      >
                         Call
                       </button>
-                      <button className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-lg hover:bg-blue-500/30 transition-colors text-sm">
+                      <button 
+                        onClick={() => window.open(`mailto:${contact.email}`)}
+                        className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-lg hover:bg-blue-500/30 transition-colors text-sm"
+                        disabled={!contact.email}
+                      >
                         Email
                       </button>
-                      <button className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-lg hover:bg-purple-500/30 transition-colors text-sm">
+                      <button 
+                        onClick={() => {
+                          // TODO: Implement add note functionality
+                          alert(`Add note for ${contact.first_name} ${contact.last_name} - Feature coming soon!`);
+                        }}
+                        className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-lg hover:bg-purple-500/30 transition-colors text-sm"
+                      >
                         Add Note
                       </button>
                     </div>

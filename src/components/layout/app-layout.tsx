@@ -4,6 +4,7 @@ import { useAuth } from '@/contexts/auth-context'
 import { usePathname } from 'next/navigation'
 import { BottomNavigation } from './bottom-navigation'
 import { HudBackground } from '@/components/ui/hud-background'
+import { InstallPrompt, PWAStatus } from '@/components/pwa/install-prompt'
 
 interface AppLayoutProps {
   children: React.ReactNode
@@ -26,6 +27,9 @@ export function AppLayout({ children }: AppLayoutProps) {
       {/* HUD Background Effects */}
       <HudBackground />
       
+      {/* PWA Status Indicator */}
+      <PWAStatus />
+      
       {/* Content Area */}
       <main className={`relative z-10 ${showNavigation ? 'pb-24' : ''}`}>
         {children}
@@ -33,6 +37,9 @@ export function AppLayout({ children }: AppLayoutProps) {
       
       {/* Bottom Navigation - Only show when authenticated */}
       {showNavigation && <BottomNavigation />}
+      
+      {/* PWA Install Prompt */}
+      <InstallPrompt />
     </div>
   )
 }

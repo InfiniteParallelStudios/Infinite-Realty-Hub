@@ -12,8 +12,15 @@ import { UserPlus, Search, Filter, Download, Users } from 'lucide-react'
 export default function ContactsPage() {
   const {} = useAuth()
   const [showAddModal, setShowAddModal] = useState(false)
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [editingContact, setEditingContact] = useState<any>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [filterType, setFilterType] = useState('all')
+
+  const handleEditContact = (contact: any) => {
+    setEditingContact(contact)
+    setShowEditModal(true)
+  }
 
   return (
     <ProtectedRoute>
@@ -111,6 +118,7 @@ export default function ContactsPage() {
         <ContactList 
           searchQuery={searchQuery}
           filterType={filterType}
+          onEditContact={handleEditContact}
         />
 
         {/* Add Contact Modal */}
@@ -119,6 +127,22 @@ export default function ContactsPage() {
             onClose={() => setShowAddModal(false)}
             onSuccess={() => {
               setShowAddModal(false)
+              // Refresh contact list
+            }}
+          />
+        )}
+
+        {/* Edit Contact Modal */}
+        {showEditModal && editingContact && (
+          <AddContactModal
+            contact={editingContact}
+            onClose={() => {
+              setShowEditModal(false)
+              setEditingContact(null)
+            }}
+            onSuccess={() => {
+              setShowEditModal(false)
+              setEditingContact(null)
               // Refresh contact list
             }}
           />

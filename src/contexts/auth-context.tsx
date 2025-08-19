@@ -9,7 +9,10 @@ interface AuthContextType {
   session: Session | null
   loading: boolean
   signInWithGoogle: () => Promise<void>
+  signInWithEmail: (email: string, password: string) => Promise<void>
+  signUpWithEmail: (email: string, password: string, fullName: string) => Promise<void>
   signOut: () => Promise<void>
+  resetPassword: (email: string) => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -107,6 +110,58 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  const signInWithEmail = async (email: string, password: string) => {
+    console.log('🚀 Starting email sign in for:', email)
+    
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    })
+    
+    if (error) {
+      console.error('❌ Error signing in with email:', error)
+      throw error
+    } else {
+      console.log('✅ Email sign in successful')
+    }
+  }
+
+  const signUpWithEmail = async (email: string, password: string, fullName: string) => {
+    console.log('🚀 Starting email sign up for:', email)
+    
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: fullName,
+        }
+      }
+    })
+    
+    if (error) {
+      console.error('❌ Error signing up with email:', error)
+      throw error
+    } else {
+      console.log('✅ Email sign up successful:', data)
+    }
+  }
+
+  const resetPassword = async (email: string) => {
+    console.log('🚀 Starting password reset for:', email)
+    
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/auth/reset-password`
+    })
+    
+    if (error) {
+      console.error('❌ Error sending password reset email:', error)
+      throw error
+    } else {
+      console.log('✅ Password reset email sent')
+    }
+  }
+
   const signOut = async () => {
     const { error } = await supabase.auth.signOut()
     if (error) {
@@ -120,6 +175,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     session,
     loading,
     signInWithGoogle,
+    signInWithEmail,
+    signUpWithEmail,
+    resetPassword,
     signOut
   }
 

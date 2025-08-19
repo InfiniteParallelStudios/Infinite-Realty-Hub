@@ -10,6 +10,7 @@ import { X, User, Phone, Building, MapPin, Star, Save } from 'lucide-react'
 interface AddContactModalProps {
   onClose: () => void
   onSuccess: () => void
+  contact?: any // For editing existing contacts
 }
 
 interface ContactForm {
@@ -34,29 +35,31 @@ interface ContactForm {
   timeline: string
 }
 
-export function AddContactModal({ onClose, onSuccess }: AddContactModalProps) {
+export function AddContactModal({ onClose, onSuccess, contact }: AddContactModalProps) {
   const { user } = useAuth()
   const [loading, setLoading] = useState(false)
+  const isEditing = !!contact
+  
   const [formData, setFormData] = useState<ContactForm>({
-    first_name: '',
-    last_name: '',
-    email: '',
-    phone: '',
-    mobile: '',
-    company: '',
-    job_title: '',
-    contact_type: 'lead',
-    status: 'new',
-    source: '',
-    street_address: '',
-    city: '',
-    state: '',
-    zip_code: '',
-    notes: '',
-    rating: 0,
-    price_range_min: '',
-    price_range_max: '',
-    timeline: ''
+    first_name: contact?.first_name || '',
+    last_name: contact?.last_name || '',
+    email: contact?.email || '',
+    phone: contact?.phone || '',
+    mobile: contact?.mobile || '',
+    company: contact?.company || '',
+    job_title: contact?.job_title || '',
+    contact_type: contact?.contact_type || 'lead',
+    status: contact?.status || 'new',
+    source: contact?.source || '',
+    street_address: contact?.street_address || '',
+    city: contact?.city || '',
+    state: contact?.state || '',
+    zip_code: contact?.zip_code || '',
+    notes: contact?.notes || '',
+    rating: contact?.rating || 0,
+    price_range_min: contact?.price_range_min ? contact.price_range_min.toString() : '',
+    price_range_max: contact?.price_range_max ? contact.price_range_max.toString() : '',
+    timeline: contact?.timeline || ''
   })
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -81,37 +84,52 @@ export function AddContactModal({ onClose, onSuccess }: AddContactModalProps) {
     setLoading(true)
 
     try {
-      // Get user's organization from profiles
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('organization_id')
-        .eq('id', user.id)
-        .single()
-
-      if (!profile?.organization_id) {
-        throw new Error('User organization not found')
-      }
-
-      // Create contact
+      // Prepare contact data
       const contactData = {
         ...formData,
-        organization_id: profile.organization_id,
-        user_id: user.id,
         price_range_min: formData.price_range_min ? parseInt(formData.price_range_min) : null,
         price_range_max: formData.price_range_max ? parseInt(formData.price_range_max) : null,
         rating: formData.rating || null
       }
 
-      const { error } = await supabase
-        .from('contacts')
-        .insert([contactData])
+      if (isEditing && contact?.id) {
+        // Update existing contact
+        const { error } = await supabase
+          .from('contacts')
+          .update(contactData)
+          .eq('id', contact.id)
 
-      if (error) throw error
+        if (error) throw error
+      } else {
+        // Get user's organization from profiles for new contact
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('organization_id')
+          .eq('id', user.id)
+          .single()
+
+        if (!profile?.organization_id) {
+          throw new Error('User organization not found')
+        }
+
+        // Create new contact
+        const newContactData = {
+          ...contactData,
+          organization_id: profile.organization_id,
+          user_id: user.id
+        }
+
+        const { error } = await supabase
+          .from('contacts')
+          .insert([newContactData])
+
+        if (error) throw error
+      }
 
       onSuccess()
     } catch (error) {
-      console.error('Error creating contact:', error)
-      alert('Error creating contact. Please try again.')
+      console.error(`Error ${isEditing ? 'updating' : 'creating'} contact:`, error)
+      alert(`Error ${isEditing ? 'updating' : 'creating'} contact. Please try again.`)
     } finally {
       setLoading(false)
     }
@@ -143,10 +161,10 @@ export function AddContactModal({ onClose, onSuccess }: AddContactModalProps) {
                   </div>
                   <div>
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                      Add New Contact
+                      {isEditing ? 'Edit Contact' : 'Add New Contact'}
                     </h2>
                     <p className="text-gray-600 dark:text-gray-400">
-                      Add a new contact to your CRM
+                      {isEditing ? 'Update contact information' : 'Add a new contact to your CRM'}
                     </p>
                   </div>
                 </div>
@@ -507,12 +525,12 @@ export function AddContactModal({ onClose, onSuccess }: AddContactModalProps) {
                     {loading ? (
                       <>
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                        Creating...
+                        {isEditing ? 'Updating...' : 'Creating...'}
                       </>
                     ) : (
                       <>
                         <Save className="w-4 h-4" />
-                        Create Contact
+                        {isEditing ? 'Update Contact' : 'Create Contact'}
                       </>
                     )}
                   </motion.button>

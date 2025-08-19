@@ -1,10 +1,51 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { InfinityLogo } from './infinity-logo'
 
 export function HudBackground() {
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden">
+      {/* Large infinity logo in center background - reduced size on mobile */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <InfinityLogo 
+          size={600} 
+          className="opacity-10 scale-100 sm:scale-150" 
+          showBackground={true}
+        />
+      </div>
+
+      {/* Smaller infinity logos scattered - hidden on mobile for performance */}
+      <motion.div
+        className="absolute top-1/4 left-1/6 opacity-5 hidden sm:block"
+        animate={{
+          rotate: 360,
+          scale: [0.8, 1.2, 0.8],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      >
+        <InfinityLogo size={120} showBackground={false} />
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-1/4 right-1/6 opacity-5 hidden sm:block"
+        animate={{
+          rotate: -360,
+          scale: [1.2, 0.8, 1.2],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      >
+        <InfinityLogo size={80} showBackground={false} />
+      </motion.div>
+
       {/* Main HUD Grid */}
       <div className="absolute inset-0 opacity-20">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -17,9 +58,9 @@ export function HudBackground() {
         </svg>
       </div>
 
-      {/* Rotating Geometric Elements */}
+      {/* Rotating Geometric Elements - reduced size on mobile */}
       <motion.div
-        className="absolute top-1/4 right-1/4 w-64 h-64 opacity-10"
+        className="absolute top-1/4 right-1/4 w-32 h-32 sm:w-64 sm:h-64 opacity-10"
         animate={{ rotate: 360 }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
       >
@@ -35,9 +76,9 @@ export function HudBackground() {
         </svg>
       </motion.div>
 
-      {/* Counter-rotating inner element */}
+      {/* Counter-rotating inner element - hidden on small screens */}
       <motion.div
-        className="absolute top-1/4 right-1/4 w-32 h-32 opacity-15 translate-x-16 translate-y-16"
+        className="absolute top-1/4 right-1/4 w-16 h-16 sm:w-32 sm:h-32 opacity-15 translate-x-8 translate-y-8 sm:translate-x-16 sm:translate-y-16 hidden sm:block"
         animate={{ rotate: -360 }}
         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
       >
@@ -51,9 +92,9 @@ export function HudBackground() {
         </svg>
       </motion.div>
 
-      {/* Pulsating Circles */}
+      {/* Pulsating Circles - reduced size on mobile */}
       <motion.div
-        className="absolute bottom-1/3 left-1/4 w-48 h-48 opacity-10"
+        className="absolute bottom-1/3 left-1/4 w-24 h-24 sm:w-48 sm:h-48 opacity-10"
         animate={{ scale: [0.8, 1.2, 0.8], opacity: [0.1, 0.3, 0.1] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       >
@@ -61,7 +102,7 @@ export function HudBackground() {
       </motion.div>
 
       <motion.div
-        className="absolute bottom-1/3 left-1/4 w-32 h-32 opacity-15 translate-x-8 translate-y-8"
+        className="absolute bottom-1/3 left-1/4 w-16 h-16 sm:w-32 sm:h-32 opacity-15 translate-x-4 translate-y-4 sm:translate-x-8 sm:translate-y-8 hidden sm:block"
         animate={{ scale: [1.2, 0.8, 1.2], opacity: [0.15, 0.4, 0.15] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       >
