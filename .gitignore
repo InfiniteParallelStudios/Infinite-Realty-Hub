@@ -30,12 +30,231 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# ===========================================
+# SECURITY: Environment Variables & Secrets
+# ===========================================
+
+# Environment files - NEVER commit these!
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+*.env
+
+# Supabase secrets
+.supabase/
+supabase/.env
+
+# API keys and tokens
+**/api-keys.json
+**/secrets.json
+**/*-key.json
+**/*-secret.*
+**/*-token.*
+**/*.key
+**/*.pem
+**/*.p12
+**/*.pfx
+
+# ===========================================
+# MCP SERVERS & AI TOOLS
+# ===========================================
+
+# MCP server configurations
+mcp-server*/
+*.mcp
+mcp.json
+mcp-*.json
+
+# Claude Code specific
+.claude/
+.claude-code/
+CLAUDE.md
+**/claude-*
+
+# AI assistant logs and configs
+ai-logs/
+*.ai-log
+.ai-config
+
+# LLM context and memory files
+context.json
+memory.json
+*.context
+*.memory
+
+# ===========================================
+# DEVELOPMENT & IDE
+# ===========================================
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===========================================
+# LOGS & TEMPORARY FILES
+# ===========================================
+
+# Application logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Temporary folders
+tmp/
+temp/
+.tmp/
+.temp/
+
+# ===========================================
+# DEPLOYMENT & INFRASTRUCTURE
+# ===========================================
 
 # vercel
 .vercel
 
+# Docker
+.dockerignore
+Dockerfile.local
+docker-compose.override.yml
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# AWS
+.aws/
+
+# ===========================================
+# TYPESCRIPT & BUILD
+# ===========================================
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Build outputs
+dist/
+build/
+out/
+
+# ===========================================
+# DATABASE & MIGRATIONS
+# ===========================================
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Database migrations (if sensitive)
+migrations/*.local.*
+
+# ===========================================
+# TESTING & COVERAGE
+# ===========================================
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# ===========================================
+# SECURITY SCANS & AUDITS
+# ===========================================
+
+# Security scan results
+security-report.*
+audit-report.*
+*.security
+
+# Dependency vulnerability reports
+.snyk
+
+# ===========================================
+# BACKUP FILES
+# ===========================================
+
+# Backup files
+*.backup
+*.bak
+*.old
+*.orig
+*.tmp
+
+# ===========================================
+# PROJECT SPECIFIC
+# ===========================================
+
+# Success/status files with potential sensitive info
+SUCCESS-*.md
+TEST-*.md
+
+# Scripts with embedded tokens/keys
+scripts/deploy-*.sh
+scripts/setup-*.sh
+
+# Test files with real data
+**/test-data/
+**/mock-data/real-*
+
+# Documentation with sensitive examples
+docs/deployment/
+docs/secrets/
+
+# ===========================================
+# ADDITIONAL SAFETY MEASURES
+# ===========================================
+
+# Any file containing 'secret', 'key', 'token', 'password'
+**/*secret*
+**/*key*
+**/*token*
+**/*password*
+**/*credential*
+
+# JWT tokens and auth files
+*.jwt
+*.auth
+
+# Certificate files
+*.crt
+*.cer
+*.ca-bundle
+*.p7b
+*.p7s
+*.spc
+
+# SSH keys
+id_rsa
+id_dsa
+*.openssh
+*.ssh
