@@ -1,0 +1,51 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '@/contexts/auth-context'
+
+export default function AuthCallback() {
+  const router = useRouter()
+  const { user, loading } = useAuth()
+  const [checkCount, setCheckCount] = useState(0)
+
+  useEffect(() => {
+    console.log('🔄 Auth callback - Check #', checkCount + 1)
+    console.log('👤 User:', user?.email || 'None')
+    console.log('⏳ Loading:', loading)
+    
+    // If we have a user, redirect to dashboard
+    if (user && !loading) {
+      console.log('✅ User authenticated, redirecting to dashboard')
+      router.push('/dashboard')
+      return
+    }
+    
+    // If not loading and no user, wait a bit more (up to 10 checks = ~5 seconds)
+    if (!loading && !user && checkCount < 10) {
+      console.log('⏳ Waiting for authentication... attempt', checkCount + 1)
+      const timer = setTimeout(() => {
+        setCheckCount(prev => prev + 1)
+      }, 500)
+      
+      return () => clearTimeout(timer)
+    }
+    
+    // After 10 attempts, redirect to signin
+    if (!loading && !user && checkCount >= 10) {
+      console.log('❌ Authentication timeout, redirecting to signin')
+      router.push('/auth/signin?error=auth_timeout')
+    }
+    
+  }, [user, loading, router, checkCount])
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-bg-light to-bg-light-secondary dark:from-bg-dark dark:to-bg-space">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400 mx-auto mb-4"></div>
+        <p className="text-gray-600 dark:text-gray-400">Completing sign in...</p>
+        <p className="text-sm text-gray-500 mt-2">Attempt {checkCount + 1}/10</p>
+      </div>
+    </div>
+  )
+}
