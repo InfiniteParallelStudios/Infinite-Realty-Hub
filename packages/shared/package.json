@@ -1,0 +1,28 @@
+{
+  "name": "@infinite-realty/shared",
+  "version": "1.0.0",
+  "description": "Shared code between web and mobile apps",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint . --ext .ts,.tsx",
+    "test": "jest"
+  },
+  "keywords": ["react", "react-native", "next.js", "shared"],
+  "author": "Infinite Realty Hub",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "@supabase/supabase-js": "^2.55.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

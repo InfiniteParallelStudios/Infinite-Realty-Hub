@@ -1,0 +1,95 @@
+name: App Store Deployment
+
+on:
+  push:
+    tags:
+      - 'mobile-v*'
+
+jobs:
+  deploy-android:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Setup JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Install dependencies
+        run: |
+          cd apps/mobile
+          npm ci
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Build Android Production
+        run: |
+          cd apps/mobile
+          expo build:android --type app-bundle --release-channel production
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Upload to Google Play Console
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }}
+          packageName: com.infiniterealtyhub.mobile
+          releaseFiles: apps/mobile/*.aab
+          track: production
+          status: completed
+
+  deploy-ios:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          cd apps/mobile
+          npm ci
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Build iOS Production
+        run: |
+          cd apps/mobile
+          expo build:ios --type archive --release-channel production
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+
+      - name: Upload to App Store Connect
+        run: |
+          cd apps/mobile
+          expo upload:ios --latest --apple-id ${{ secrets.APPLE_ID }} --apple-app-specific-password ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
