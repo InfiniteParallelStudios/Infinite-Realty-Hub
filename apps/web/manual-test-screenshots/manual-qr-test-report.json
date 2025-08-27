@@ -1,0 +1,35 @@
+{
+  "timestamp": "2025-08-26T00:46:40.632Z",
+  "results": {
+    "Home Page": {
+      "status": "FAIL",
+      "error": "this.page.waitForTimeout is not a function"
+    },
+    "Capture Form": {
+      "status": "FAIL",
+      "error": "this.page.waitForTimeout is not a function"
+    },
+    "QR Generator": {
+      "status": "FAIL",
+      "error": "this.page.waitForTimeout is not a function"
+    },
+    "QR Leads": {
+      "status": "FAIL",
+      "error": "this.page.waitForTimeout is not a function"
+    },
+    "QR Generation": {
+      "status": "FAIL",
+      "error": "this.page.waitForTimeout is not a function"
+    },
+    "Capture Workflow": {
+      "status": "FAIL",
+      "error": "this.page.waitForTimeout is not a function"
+    }
+  },
+  "summary": {
+    "total": 6,
+    "passed": 0,
+    "failed": 6,
+    "warnings": 0
+  }
+}

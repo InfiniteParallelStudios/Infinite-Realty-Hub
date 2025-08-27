@@ -1,0 +1,340 @@
+{
+  "timestamp": "2025-08-26T17:53:11.808Z",
+  "baseUrl": "http://localhost:3000",
+  "totalPagesTest": 9,
+  "summary": {
+    "fullyFunctional": 7,
+    "minorIssues": 1,
+    "majorIssues": 1,
+    "criticalErrors": 0
+  },
+  "pages": [
+    {
+      "name": "Home Page",
+      "url": "http://localhost:3000/",
+      "status": "unknown",
+      "loadTime": 1642,
+      "checksResults": [
+        {
+          "name": "Page loads without errors",
+          "critical": true,
+          "status": "passed",
+          "details": "Page loaded successfully"
+        },
+        {
+          "name": "Navigation elements present",
+          "critical": false,
+          "status": "failed",
+          "details": "Found 0 navigation elements"
+        },
+        {
+          "name": "No stuck loading states",
+          "critical": false,
+          "status": "passed",
+          "details": "No loading states detected"
+        }
+      ],
+      "userVisibleErrors": [],
+      "networkErrors": [],
+      "screenshot": "./test-screenshots/final-test-home-page-1756230797346.png",
+      "verdict": "MINOR ISSUES - Some functionality degraded"
+    },
+    {
+      "name": "Authentication",
+      "url": "http://localhost:3000/auth/signin",
+      "status": "unknown",
+      "loadTime": 956,
+      "checksResults": [
+        {
+          "name": "Sign-in form displays",
+          "critical": true,
+          "status": "passed",
+          "details": "Found 2 auth-related elements"
+        },
+        {
+          "name": "Google OAuth button works",
+          "critical": false,
+          "status": "passed",
+          "details": "Generic check completed"
+        },
+        {
+          "name": "Form validation works",
+          "critical": false,
+          "status": "passed",
+          "details": "Generic check completed"
+        }
+      ],
+      "userVisibleErrors": [],
+      "networkErrors": [],
+      "screenshot": "./test-screenshots/final-test-authentication-1756230802218.png",
+      "verdict": "FULLY FUNCTIONAL - No issues detected"
+    },
+    {
+      "name": "Dashboard",
+      "url": "http://localhost:3000/dashboard",
+      "status": "unknown",
+      "loadTime": 961,
+      "checksResults": [
+        {
+          "name": "Dashboard loads successfully",
+          "critical": true,
+          "status": "passed",
+          "details": "Generic check completed"
+        },
+        {
+          "name": "Widget components render",
+          "critical": false,
+          "status": "passed",
+          "details": "Generic check completed"
+        },
+        {
+          "name": "No API failure messages",
+          "critical": false,
+          "status": "passed",
+          "details": "Generic check completed"
+        }
+      ],
+      "userVisibleErrors": [],
+      "networkErrors": [],
+      "screenshot": "./test-screenshots/final-test-dashboard-1756230807023.png",
+      "verdict": "FULLY FUNCTIONAL - No issues detected"
+    },
+    {
+      "name": "Contacts System",
+      "url": "http://localhost:3000/contacts",
+      "status": "unknown",
+      "loadTime": 911,
+      "checksResults": [
+        {
+          "name": "Contacts page loads",
+          "critical": true,
+          "status": "passed",
+          "details": "Generic check completed"
+        },
+        {
+          "name": "No \"Error loading contacts\" message",
+          "critical": true,
+          "status": "passed",
+          "details": "No contact error messages"
+        },
+        {
+          "name": "Add contact functionality available",
+          "critical": false,
+          "status": "passed",
+          "details": "Generic check completed"
+        }
+      ],
+      "userVisibleErrors": [],
+      "networkErrors": [],
+      "screenshot": "./test-screenshots/final-test-contacts-system-1756230811851.png",
+      "verdict": "FULLY FUNCTIONAL - No issues detected"
+    },
+    {
+      "name": "Sales Pipeline",
+      "url": "http://localhost:3000/pipeline",
+      "status": "unknown",
+      "loadTime": 973,
+      "checksResults": [
+        {
+          "name": "Pipeline board displays",
+          "critical": true,
+          "status": "passed",
+          "details": "Generic check completed"
+        },
+        {
+          "name": "Pipeline stages visible",
+          "critical": false,
+          "status": "passed",
+          "details": "Generic check completed"
+        },
+        {
+          "name": "Drag and drop interface works",
+          "critical": false,
+          "status": "passed",
+          "details": "Generic check completed"
+        }
+      ],
+      "userVisibleErrors": [],
+      "networkErrors": [],
+      "screenshot": "./test-screenshots/final-test-sales-pipeline-1756230816668.png",
+      "verdict": "FULLY FUNCTIONAL - No issues detected"
+    },
+    {
+      "name": "QR Code System",
+      "url": "http://localhost:3000/qr-generator",
+      "status": "unknown",
+      "loadTime": 898,
+      "checksResults": [
+        {
+          "name": "QR generator loads",
+          "critical": true,
+          "status": "passed",
+          "details": "Generic check completed"
+        },
+        {
+          "name": "Form inputs work",
+          "critical": false,
+          "status": "passed",
+          "details": "Generic check completed"
+        },
+        {
+          "name": "QR code generation works",
+          "critical": false,
+          "status": "passed",
+          "details": "Generic check completed"
+        }
+      ],
+      "userVisibleErrors": [],
+      "networkErrors": [],
+      "screenshot": "./test-screenshots/final-test-qr-code-system-1756230821473.png",
+      "verdict": "FULLY FUNCTIONAL - No issues detected"
+    },
+    {
+      "name": "Newsletter Management",
+      "url": "http://localhost:3000/newsletter",
+      "status": "unknown",
+      "loadTime": 959,
+      "checksResults": [
+        {
+          "name": "Newsletter page loads",
+          "critical": true,
+          "status": "passed",
+          "details": "Generic check completed"
+        },
+        {
+          "name": "No fatal API errors shown",
+          "critical": true,
+          "status": "passed",
+          "details": "Generic check completed"
+        },
+        {
+          "name": "Content generation works",
+          "critical": false,
+          "status": "passed",
+          "details": "Generic check completed"
+        }
+      ],
+      "userVisibleErrors": [],
+      "networkErrors": [],
+      "screenshot": "./test-screenshots/final-test-newsletter-management-1756230826237.png",
+      "verdict": "FULLY FUNCTIONAL - No issues detected"
+    },
+    {
+      "name": "Team Management",
+      "url": "http://localhost:3000/team",
+      "status": "unknown",
+      "loadTime": 834,
+      "checksResults": [
+        {
+          "name": "Team page displays",
+          "critical": true,
+          "status": "passed",
+          "details": "Generic check completed"
+        },
+        {
+          "name": "Team member list loads",
+          "critical": false,
+          "status": "passed",
+          "details": "Generic check completed"
+        },
+        {
+          "name": "Invite functionality available",
+          "critical": false,
+          "status": "passed",
+          "details": "Generic check completed"
+        }
+      ],
+      "userVisibleErrors": [],
+      "networkErrors": [],
+      "screenshot": "./test-screenshots/final-test-team-management-1756230831048.png",
+      "verdict": "FULLY FUNCTIONAL - No issues detected"
+    },
+    {
+      "name": "Market Data Testing",
+      "url": "http://localhost:3000/market-test",
+      "status": "unknown",
+      "loadTime": 1957,
+      "checksResults": [
+        {
+          "name": "Market test page loads",
+          "critical": true,
+          "status": "passed",
+          "details": "Generic check completed"
+        },
+        {
+          "name": "No \"Failed to fetch market data\" errors",
+          "critical": false,
+          "status": "passed",
+          "details": "No market error messages"
+        },
+        {
+          "name": "Market widgets display data",
+          "critical": false,
+          "status": "passed",
+          "details": "Generic check completed"
+        }
+      ],
+      "userVisibleErrors": [
+        {
+          "pattern": "404",
+          "severity": "high",
+          "element": "SPAN",
+          "context": "404 errors - Endpoints not found..."
+        }
+      ],
+      "networkErrors": [],
+      "screenshot": "./test-screenshots/final-test-market-data-testing-1756230836538.png",
+      "verdict": "MAJOR ISSUES - User-visible errors present"
+    }
+  ],
+  "networkIssues": [
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/market_data_cache",
+      "errorCount": 5,
+      "status": 404,
+      "critical": false,
+      "affectedPages": [
+        "http://localhost:3000/market-test"
+      ]
+    },
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/newsletter_preferences?select=*&user_id=eq.test-user",
+      "errorCount": 2,
+      "status": 404,
+      "critical": false,
+      "affectedPages": [
+        "http://localhost:3000/market-test"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "LOW",
+      "category": "Database",
+      "issue": "Missing market_data_cache table",
+      "recommendation": "Create market_data_cache table in Supabase or handle missing table gracefully",
+      "impact": "Backend 404 errors (not user-visible but creates console noise)"
+    },
+    {
+      "priority": "LOW",
+      "category": "Database",
+      "issue": "Missing newsletter_preferences table",
+      "recommendation": "Create newsletter_preferences table in Supabase or handle missing table gracefully",
+      "impact": "Backend 404 errors (not user-visible but creates console noise)"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "User Experience",
+      "issue": "1 pages show user-visible errors",
+      "recommendation": "Improve error handling to provide better user feedback",
+      "impact": "Poor user experience due to error messages"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "Overall Assessment",
+      "issue": "Application has room for improvement",
+      "recommendation": "77.8% of pages are functional. Address major issues for better stability.",
+      "impact": "Good but could be better user experience"
+    }
+  ]
+}

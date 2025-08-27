@@ -1,0 +1,273 @@
+{
+  "consoleErrors": [
+    {
+      "type": "warning",
+      "message": "Multiple GoTrueClient instances detected in the same browser context. It is not an error, but this should be avoided as it may produce undefined behavior when used concurrently under the same storage key.",
+      "url": "http://localhost:3000/newsletter",
+      "timestamp": "2025-08-26T04:51:27.516Z"
+    },
+    {
+      "type": "warning",
+      "message": "Multiple GoTrueClient instances detected in the same browser context. It is not an error, but this should be avoided as it may produce undefined behavior when used concurrently under the same storage key.",
+      "url": "http://localhost:3000/newsletter",
+      "timestamp": "2025-08-26T04:51:27.521Z"
+    },
+    {
+      "type": "warning",
+      "message": "Multiple GoTrueClient instances detected in the same browser context. It is not an error, but this should be avoided as it may produce undefined behavior when used concurrently under the same storage key.",
+      "url": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:35.547Z"
+    },
+    {
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:36.800Z"
+    },
+    {
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:36.802Z"
+    },
+    {
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:37.006Z"
+    },
+    {
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:37.094Z"
+    },
+    {
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:37.114Z"
+    },
+    {
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:37.116Z"
+    },
+    {
+      "type": "error",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "url": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:37.142Z"
+    },
+    {
+      "type": "warning",
+      "message": "Multiple GoTrueClient instances detected in the same browser context. It is not an error, but this should be avoided as it may produce undefined behavior when used concurrently under the same storage key.",
+      "url": "http://localhost:3000/dashboard",
+      "timestamp": "2025-08-26T04:51:45.195Z"
+    }
+  ],
+  "networkErrors": [
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/market_data_cache",
+      "status": 404,
+      "statusText": "",
+      "headers": {
+        "proxy-status": "PostgREST; error=PGRST205",
+        "sb-project-ref": "fncqxcmkylscjjbcxriu",
+        "access-control-expose-headers": "Content-Encoding, Content-Location, Content-Range, Content-Type, Date, Location, Server, Transfer-Encoding, Range-Unit",
+        "content-encoding": "gzip",
+        "cf-cache-status": "DYNAMIC",
+        "sb-request-id": "0198e4b7-a2bd-738d-8475-308d349a288e",
+        "x-envoy-attempt-count": "1",
+        "x-content-type-options": "nosniff",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "date": "Tue, 26 Aug 2025 04:51:36 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "vary": "Accept-Encoding",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-envoy-upstream-service-time": "70",
+        "cf-ray": "9750b70abc8553ba-ATL",
+        "access-control-allow-origin": "http://localhost:3000",
+        "server": "cloudflare",
+        "sb-gateway-version": "1"
+      },
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:36.800Z"
+    },
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/market_data_cache",
+      "status": 404,
+      "statusText": "",
+      "headers": {
+        "proxy-status": "PostgREST; error=PGRST205",
+        "sb-project-ref": "fncqxcmkylscjjbcxriu",
+        "access-control-expose-headers": "Content-Encoding, Content-Location, Content-Range, Content-Type, Date, Location, Server, Transfer-Encoding, Range-Unit",
+        "content-encoding": "gzip",
+        "cf-cache-status": "DYNAMIC",
+        "sb-request-id": "0198e4b7-a2c5-78dc-833d-27303dd5069c",
+        "x-envoy-attempt-count": "1",
+        "x-content-type-options": "nosniff",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "date": "Tue, 26 Aug 2025 04:51:36 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "vary": "Accept-Encoding",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-envoy-upstream-service-time": "23",
+        "cf-ray": "9750b70acc8e53ba-ATL",
+        "access-control-allow-origin": "http://localhost:3000",
+        "server": "cloudflare",
+        "sb-gateway-version": "1"
+      },
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:36.802Z"
+    },
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/newsletter_preferences?select=*&user_id=eq.test-user",
+      "status": 404,
+      "statusText": "",
+      "headers": {
+        "proxy-status": "PostgREST; error=PGRST205",
+        "sb-project-ref": "fncqxcmkylscjjbcxriu",
+        "access-control-expose-headers": "Content-Encoding, Content-Location, Content-Range, Content-Type, Date, Location, Server, Transfer-Encoding, Range-Unit",
+        "content-encoding": "gzip",
+        "cf-cache-status": "DYNAMIC",
+        "sb-request-id": "0198e4b7-a3c6-77d5-9432-6212fee14814",
+        "x-envoy-attempt-count": "1",
+        "x-content-type-options": "nosniff",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "server-timing": "cfExtPri",
+        "date": "Tue, 26 Aug 2025 04:51:37 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "vary": "Accept-Encoding",
+        "priority": "u=1,i",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-envoy-upstream-service-time": "4",
+        "cf-ray": "9750b70c695f59af-IAD",
+        "access-control-allow-origin": "http://localhost:3000",
+        "server": "cloudflare",
+        "sb-gateway-version": "1"
+      },
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:37.006Z"
+    },
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/newsletter_preferences?select=*&user_id=eq.test-user",
+      "status": 404,
+      "statusText": "",
+      "headers": {
+        "proxy-status": "PostgREST; error=PGRST205",
+        "sb-project-ref": "fncqxcmkylscjjbcxriu",
+        "access-control-expose-headers": "Content-Encoding, Content-Location, Content-Range, Content-Type, Date, Location, Server, Transfer-Encoding, Range-Unit",
+        "content-encoding": "gzip",
+        "cf-cache-status": "DYNAMIC",
+        "sb-request-id": "0198e4b7-a42d-7dfe-9844-243e3a3febc0",
+        "x-envoy-attempt-count": "1",
+        "x-content-type-options": "nosniff",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "server-timing": "cfExtPri",
+        "date": "Tue, 26 Aug 2025 04:51:37 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "vary": "Accept-Encoding",
+        "priority": "u=1,i",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-envoy-upstream-service-time": "2",
+        "cf-ray": "9750b70d09be59af-IAD",
+        "access-control-allow-origin": "http://localhost:3000",
+        "server": "cloudflare",
+        "sb-gateway-version": "1"
+      },
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:37.093Z"
+    },
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/market_data_cache",
+      "status": 404,
+      "statusText": "",
+      "headers": {
+        "proxy-status": "PostgREST; error=PGRST205",
+        "sb-project-ref": "fncqxcmkylscjjbcxriu",
+        "access-control-expose-headers": "Content-Encoding, Content-Location, Content-Range, Content-Type, Date, Location, Server, Transfer-Encoding, Range-Unit",
+        "content-encoding": "gzip",
+        "cf-cache-status": "DYNAMIC",
+        "sb-request-id": "0198e4b7-a430-7e62-9760-543587365332",
+        "x-envoy-attempt-count": "1",
+        "x-content-type-options": "nosniff",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "server-timing": "cfExtPri",
+        "date": "Tue, 26 Aug 2025 04:51:37 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "vary": "Accept-Encoding",
+        "priority": "u=1,i",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-envoy-upstream-service-time": "1",
+        "cf-ray": "9750b70d09c059af-IAD",
+        "access-control-allow-origin": "http://localhost:3000",
+        "server": "cloudflare",
+        "sb-gateway-version": "1"
+      },
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:37.114Z"
+    },
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/market_data_cache",
+      "status": 404,
+      "statusText": "",
+      "headers": {
+        "proxy-status": "PostgREST; error=PGRST205",
+        "sb-project-ref": "fncqxcmkylscjjbcxriu",
+        "access-control-expose-headers": "Content-Encoding, Content-Location, Content-Range, Content-Type, Date, Location, Server, Transfer-Encoding, Range-Unit",
+        "content-encoding": "gzip",
+        "cf-cache-status": "DYNAMIC",
+        "sb-request-id": "0198e4b7-a435-74ce-b5bb-24bb222e9f7b",
+        "x-envoy-attempt-count": "1",
+        "x-content-type-options": "nosniff",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "server-timing": "cfExtPri",
+        "date": "Tue, 26 Aug 2025 04:51:37 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "vary": "Accept-Encoding",
+        "priority": "u=1,i",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-envoy-upstream-service-time": "2",
+        "cf-ray": "9750b70d19ca59af-IAD",
+        "access-control-allow-origin": "http://localhost:3000",
+        "server": "cloudflare",
+        "sb-gateway-version": "1"
+      },
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:37.116Z"
+    },
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/market_data_cache",
+      "status": 404,
+      "statusText": "",
+      "headers": {
+        "proxy-status": "PostgREST; error=PGRST205",
+        "sb-project-ref": "fncqxcmkylscjjbcxriu",
+        "access-control-expose-headers": "Content-Encoding, Content-Location, Content-Range, Content-Type, Date, Location, Server, Transfer-Encoding, Range-Unit",
+        "content-encoding": "gzip",
+        "cf-cache-status": "DYNAMIC",
+        "sb-request-id": "0198e4b7-a45a-778e-aeef-52c4798870f5",
+        "x-envoy-attempt-count": "1",
+        "x-content-type-options": "nosniff",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "server-timing": "cfExtPri",
+        "date": "Tue, 26 Aug 2025 04:51:37 GMT",
+        "content-type": "application/json; charset=utf-8",
+        "vary": "Accept-Encoding",
+        "priority": "u=1,i",
+        "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+        "x-envoy-upstream-service-time": "2",
+        "cf-ray": "9750b70d59e259af-IAD",
+        "access-control-allow-origin": "http://localhost:3000",
+        "server": "cloudflare",
+        "sb-gateway-version": "1"
+      },
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:51:37.141Z"
+    }
+  ],
+  "pageErrors": [],
+  "marketDataErrors": []
+}

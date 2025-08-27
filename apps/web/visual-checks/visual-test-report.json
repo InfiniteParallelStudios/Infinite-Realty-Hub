@@ -1,0 +1,77 @@
+{
+  "timestamp": "2025-08-26T22:37:36.857Z",
+  "totalPages": 10,
+  "issuesFound": 14,
+  "issues": [
+    {
+      "type": "Broken Button",
+      "page": "http://localhost:3000/",
+      "message": "Button \"Sign In\" may not have click handler"
+    },
+    {
+      "type": "Broken Button",
+      "page": "http://localhost:3000/auth/signin",
+      "message": "Button \"Sign In\" may not have click handler"
+    },
+    {
+      "type": "Broken Button",
+      "page": "http://localhost:3000/dashboard",
+      "message": "Button \"Sign In\" may not have click handler"
+    },
+    {
+      "type": "Broken Button",
+      "page": "http://localhost:3000/contacts",
+      "message": "Button \"Sign In\" may not have click handler"
+    },
+    {
+      "type": "Broken Button",
+      "page": "http://localhost:3000/pipeline",
+      "message": "Button \"Sign In\" may not have click handler"
+    },
+    {
+      "type": "Broken Button",
+      "page": "http://localhost:3000/newsletter",
+      "message": "Button \"Sign In\" may not have click handler"
+    },
+    {
+      "type": "Empty Page",
+      "page": "http://localhost:3000/team",
+      "message": "Page has less than 100 characters of content"
+    },
+    {
+      "type": "Stuck Loading",
+      "page": "http://localhost:3000/team",
+      "message": "Loading spinner visible after page load"
+    },
+    {
+      "type": "Visible Error Text",
+      "page": "http://localhost:3000/market-test",
+      "message": "open browser console (f12) and check for any errors. common issues:"
+    },
+    {
+      "type": "Visible Error Text",
+      "page": "http://localhost:3000/market-test",
+      "message": "api key errors - check .env.local file"
+    },
+    {
+      "type": "Visible Error Text",
+      "page": "http://localhost:3000/market-test",
+      "message": "cors errors - api calls blocked by browser"
+    },
+    {
+      "type": "Visible Error Text",
+      "page": "http://localhost:3000/market-test",
+      "message": "404 errors - endpoints not found"
+    },
+    {
+      "type": "Visible Error Text",
+      "page": "http://localhost:3000/market-test",
+      "message": "failed"
+    },
+    {
+      "type": "Broken Button",
+      "page": "http://localhost:3000/settings",
+      "message": "Button \"Sign In\" may not have click handler"
+    }
+  ]
+}

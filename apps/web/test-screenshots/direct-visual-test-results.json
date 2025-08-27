@@ -1,0 +1,87 @@
+{
+  "timestamp": "2025-08-26T17:50:11.920Z",
+  "baseUrl": "http://localhost:3000",
+  "tests": [
+    {
+      "name": "Home Page",
+      "url": "http://localhost:3000/",
+      "status": "passed",
+      "loadTime": 1693,
+      "errors": [],
+      "userVisibleIssues": [],
+      "screenshot": "./test-screenshots/home-page-1756230617532.png"
+    },
+    {
+      "name": "Sign In",
+      "url": "http://localhost:3000/auth/signin",
+      "status": "passed",
+      "loadTime": 902,
+      "errors": [],
+      "userVisibleIssues": [],
+      "screenshot": "./test-screenshots/sign-in-1756230622227.png"
+    },
+    {
+      "name": "Dashboard",
+      "url": "http://localhost:3000/dashboard",
+      "status": "passed",
+      "loadTime": 956,
+      "errors": [],
+      "userVisibleIssues": [],
+      "screenshot": "./test-screenshots/dashboard-1756230627026.png"
+    },
+    {
+      "name": "Contacts",
+      "url": "http://localhost:3000/contacts",
+      "status": "passed",
+      "loadTime": 922,
+      "errors": [],
+      "userVisibleIssues": [],
+      "screenshot": "./test-screenshots/contacts-1756230631784.png"
+    },
+    {
+      "name": "Pipeline",
+      "url": "http://localhost:3000/pipeline",
+      "status": "passed",
+      "loadTime": 962,
+      "errors": [],
+      "userVisibleIssues": [],
+      "screenshot": "./test-screenshots/pipeline-1756230636539.png"
+    },
+    {
+      "name": "QR Generator",
+      "url": "http://localhost:3000/qr-generator",
+      "status": "passed",
+      "loadTime": 1008,
+      "errors": [],
+      "userVisibleIssues": [],
+      "screenshot": "./test-screenshots/qr-generator-1756230641354.png"
+    },
+    {
+      "name": "Newsletter",
+      "url": "http://localhost:3000/newsletter",
+      "status": "passed",
+      "loadTime": 1067,
+      "errors": [],
+      "userVisibleIssues": [],
+      "screenshot": "./test-screenshots/newsletter-1756230646216.png"
+    },
+    {
+      "name": "Team",
+      "url": "http://localhost:3000/team",
+      "status": "passed",
+      "loadTime": 808,
+      "errors": [],
+      "userVisibleIssues": [],
+      "screenshot": "./test-screenshots/team-1756230650867.png"
+    },
+    {
+      "name": "Market Test",
+      "url": "http://localhost:3000/market-test",
+      "status": "passed",
+      "loadTime": 2513,
+      "errors": [],
+      "userVisibleIssues": [],
+      "screenshot": "./test-screenshots/market-test-1756230656852.png"
+    }
+  ]
+}

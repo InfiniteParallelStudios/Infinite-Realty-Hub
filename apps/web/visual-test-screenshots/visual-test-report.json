@@ -1,0 +1,54 @@
+{
+  "timestamp": "2025-08-26T18:13:18.961Z",
+  "totalPages": 11,
+  "passed": [],
+  "warnings": [],
+  "errors": [
+    {
+      "page": "home",
+      "error": "page.waitForTimeout is not a function"
+    },
+    {
+      "page": "auth-signin",
+      "error": "page.waitForTimeout is not a function"
+    },
+    {
+      "page": "dashboard",
+      "error": "page.waitForTimeout is not a function"
+    },
+    {
+      "page": "contacts",
+      "error": "page.waitForTimeout is not a function"
+    },
+    {
+      "page": "pipeline",
+      "error": "page.waitForTimeout is not a function"
+    },
+    {
+      "page": "qr-generator",
+      "error": "Attempted to use detached Frame 'A20A78CA9D520F15DEAA0D324DDFA994'."
+    },
+    {
+      "page": "qr-leads",
+      "error": "Attempted to use detached Frame 'A20A78CA9D520F15DEAA0D324DDFA994'."
+    },
+    {
+      "page": "newsletter",
+      "error": "Attempted to use detached Frame 'A20A78CA9D520F15DEAA0D324DDFA994'."
+    },
+    {
+      "page": "team",
+      "error": "Attempted to use detached Frame 'A20A78CA9D520F15DEAA0D324DDFA994'."
+    },
+    {
+      "page": "market-test",
+      "error": "Attempted to use detached Frame 'A20A78CA9D520F15DEAA0D324DDFA994'."
+    },
+    {
+      "page": "settings",
+      "error": "Attempted to use detached Frame 'A20A78CA9D520F15DEAA0D324DDFA994'."
+    }
+  ],
+  "consoleErrors": [],
+  "networkErrors": []
+}

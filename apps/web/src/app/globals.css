@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+/* Light theme (default) */
+:root {
+  --background: #f0f8ff;
+  --foreground: #171717;
+}
+
+/* Dark theme */
+.dark {
+  --background: #000811;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Body styling with HUD background */
+html, body {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light theme HUD background */
+.light body {
+  background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+}
+
+/* Dark theme HUD background */
+.dark body {
+  background: radial-gradient(ellipse at center, #001122 0%, #000811 50%, #000d1a 100%);
+}
+
+/* Ensure proper contrast for interactive elements */
+.light .text-gray-900 {
+  color: #111827 !important;
+}
+
+.light .text-gray-600 {
+  color: #4b5563 !important;
+}
+
+.light .text-gray-400 {
+  color: #6b7280 !important;
+}
+
+/* Ensure pipeline has enough bottom space */
+.pipeline-page {
+  padding-bottom: 300px !important;
+  margin-bottom: 100px !important;
+}

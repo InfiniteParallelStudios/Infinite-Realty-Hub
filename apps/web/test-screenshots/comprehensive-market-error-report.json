@@ -1,0 +1,155 @@
+{
+  "timestamp": "2025-08-26T04:41:36.376Z",
+  "pages": [
+    {
+      "name": "Newsletter",
+      "path": "/newsletter",
+      "url": "http://localhost:3000/newsletter",
+      "timestamp": "2025-08-26T04:41:40.604Z",
+      "errors": [],
+      "marketWidgetStatus": "No market widgets found",
+      "visibleText": "Welcome toInfinite Realty HubYour AI-powered real estate command centerEmail AddressPasswordForgot your password?Sign InOr continue withContinue with GoogleDon't have an account? Sign upWhat you'll get access to:AI-powered lead managementMarket data and analyticsClient relationship toolsProfessional dashboardBy signing in, you agree to our Terms of Service and Privacy Policy\n              if ('serviceWorker' in navigator) {\n                window.addEventListener('load', function() {\n                  navigator.serviceWorker.register('/sw.js')\n                    .then(function(registration) {\n                      console.log('✅ SW registered: ', registration);\n                    })\n                    .catch(function(registrationError) {\n                      console.log('❌ SW registration failed: ', registrationError);\n                    });\n                });\n              }\n            requestAnimationFrame(function(){$RT=performance.now()});(self.__next_f=self.__next_f||[]).push([0])self.__next_f.push([1,\"6:\\\"$Sreact.fragment\\\"\\n1e:I[\\\"(app-pages-browser)/./src/contexts/theme-context.tsx\\\",[\\\"app/layout\\\",\\\"static/chunks/app/layout.js\\\"],\\\"ThemeProvider\\\"]\\n20:I[\\\"(app-pages-browser)/./src/contexts/auth-context.tsx\\\",[\\\"app/layout\\\",\\\"static/chunks/app/layout.js\\\"],\\\"AuthProvider\\\"]\\n22:I[\\\"(app-pages-browser)/./src/components/layout/app-layout.tsx\\\",[\\\"app/layout\\\",\\\"static/chunks/app/layout.js\\\"],\\\"AppLayout\\\"]\\n24:I[\\\"(app-pages-browser)/../../node_modules/next/dist/client/components/layout-router.js\\\",[\\\"app-pages-internals\\\",\\\"static/chunks/app-pages-internals.js\\\"],\\\"\\\"]\\n26:I[\\\"(app-pages-browser)/../../node_modules/next/dist/client/components/render-from-template-context.js\\\",[\\\"app-pages-internals\\\",\\\"static/chunks/app-pages-internals.js\\\"],\\\"\\\"]\\n37:I[\\\"(app-pages-browser)/../../node_modules/next/dist/client/components/client-page.js\\\",[\\\"app-pages-internals\\\",\\\"static/chunks/app-pages-internals.js\\\"],\\\"ClientPageRoot\\\"]\\n38:I[\\\"(app-pages-browser",
+      "screenshots": [
+        "test-screenshots/market-error-test-newsletter-1756183300604.png"
+      ],
+      "generateButtonFound": false,
+      "liveWidgetToggleFound": false
+    },
+    {
+      "name": "Market Test",
+      "path": "/market-test",
+      "url": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:41:52.658Z",
+      "errors": [
+        {
+          "type": "test_failure",
+          "message": "Failed"
+        },
+        {
+          "type": "test_failure",
+          "message": "Open browser console (F12) and check for any errors. Common issues:"
+        },
+        {
+          "type": "test_failure",
+          "message": "API key errors - Check .env.local file"
+        },
+        {
+          "type": "test_failure",
+          "message": "CORS errors - API calls blocked by browser"
+        },
+        {
+          "type": "test_failure",
+          "message": "404 errors - Endpoints not found"
+        }
+      ],
+      "marketWidgetStatus": "No market widgets found",
+      "visibleText": "Market Data Integration TestComprehensive test of all API integrations and market data featuresTest ResultsRe-run Tests9Passed0Warnings0FailedAPI Keys ConfigurationRealtor: ✅, RentCast: ✅Market Data ServiceData retrieved successfullyAPI ManagerManaging 3 providersrealtor API StatusAvailable: true, Daily usage: 1rentcast API StatusAvailable: true, Daily usage: 0public API StatusAvailable: true, Daily usage: 0Cache System1 cached entriesNewsletter SystemNewsletter preferences accessibleRadius SearchFound 3 areasOverall Success Rate100.0%Show Live Widgets📝 Browser Console CheckOpen browser console (F12) and check for any errors. Common issues:•API key errors - Check .env.local file•CORS errors - API calls blocked by browser•404 errors - Endpoints not found•React warnings - Component rendering issuesDashboardContactsPipelineQR CodesNewsletterSettings\n              if ('serviceWorker' in navigator) {\n                window.addEventListener('load', function() {\n                  navigator.serviceWorker.register('/sw.js')\n                    .then(function(registration) {\n                      console.log('✅ SW registered: ', registration);\n                    })\n                    .catch(function(registrationError) {\n                      console.log('❌ SW registration failed: ', registrationError);\n                    });\n                });\n              }\n            requestAnimationFrame(function(){$RT=performance.now()});(self.__next_f=self.__next_f||[]).push([0])self.__next_f.push([1,\"6:\\\"$Sreact.fragment\\\"\\n1e:I[\\\"(app-pages-browser)/./src/contexts/theme-context.tsx\\\",[\\\"app/layout\\\",\\\"static/chunks/app/layout.js\\\"],\\\"ThemeProvider\\\"]\\n20:I[\\\"(app-pages-browser)/./src/contexts/auth-context.tsx\\\",[\\\"app/layout\\\",\\\"static/chunks/app/layout.js\\\"],\\\"AuthProvider\\\"]\\n22:I[\\\"(app-pages-browser)/./src/components/layout/app-layout.tsx\\\",[\\\"app/layout\\\",\\\"static/chunks/app/layout.js\\\"],\\\"AppLayout\\\"]\\n24:I[\\\"(app-pages-browser)/../../node_modules/next/dist/client/componen",
+      "screenshots": [
+        "test-screenshots/market-error-test-market test-1756183312658.png"
+      ],
+      "testResultsFound": 0,
+      "failedTestsFound": 5
+    },
+    {
+      "name": "Dashboard",
+      "path": "/dashboard",
+      "url": "http://localhost:3000/dashboard",
+      "timestamp": "2025-08-26T04:41:57.912Z",
+      "errors": [],
+      "marketWidgetStatus": "No market widgets found",
+      "visibleText": "Welcome toInfinite Realty HubYour AI-powered real estate command centerEmail AddressPasswordForgot your password?Sign InOr continue withContinue with GoogleDon't have an account? Sign upWhat you'll get access to:AI-powered lead managementMarket data and analyticsClient relationship toolsProfessional dashboardBy signing in, you agree to our Terms of Service and Privacy Policy\n              if ('serviceWorker' in navigator) {\n                window.addEventListener('load', function() {\n                  navigator.serviceWorker.register('/sw.js')\n                    .then(function(registration) {\n                      console.log('✅ SW registered: ', registration);\n                    })\n                    .catch(function(registrationError) {\n                      console.log('❌ SW registration failed: ', registrationError);\n                    });\n                });\n              }\n            requestAnimationFrame(function(){$RT=performance.now()});(self.__next_f=self.__next_f||[]).push([0])self.__next_f.push([1,\"6:\\\"$Sreact.fragment\\\"\\n1e:I[\\\"(app-pages-browser)/./src/contexts/theme-context.tsx\\\",[\\\"app/layout\\\",\\\"static/chunks/app/layout.js\\\"],\\\"ThemeProvider\\\"]\\n20:I[\\\"(app-pages-browser)/./src/contexts/auth-context.tsx\\\",[\\\"app/layout\\\",\\\"static/chunks/app/layout.js\\\"],\\\"AuthProvider\\\"]\\n22:I[\\\"(app-pages-browser)/./src/components/layout/app-layout.tsx\\\",[\\\"app/layout\\\",\\\"static/chunks/app/layout.js\\\"],\\\"AppLayout\\\"]\\n24:I[\\\"(app-pages-browser)/../../node_modules/next/dist/client/components/layout-router.js\\\",[\\\"app-pages-internals\\\",\\\"static/chunks/app-pages-internals.js\\\"],\\\"\\\"]\\n26:I[\\\"(app-pages-browser)/../../node_modules/next/dist/client/components/render-from-template-context.js\\\",[\\\"app-pages-internals\\\",\\\"static/chunks/app-pages-internals.js\\\"],\\\"\\\"]\\n37:I[\\\"(app-pages-browser)/../../node_modules/next/dist/client/components/client-page.js\\\",[\\\"app-pages-internals\\\",\\\"static/chunks/app-pages-internals.js\\\"],\\\"ClientPageRoot\\\"]\\n38:I[\\\"(app-pages-browser",
+      "screenshots": [
+        "test-screenshots/market-error-test-dashboard-1756183317912.png"
+      ]
+    }
+  ],
+  "consoleErrors": [
+    {
+      "page": "http://localhost:3000/market-test",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "timestamp": "2025-08-26T04:41:48.836Z"
+    },
+    {
+      "page": "http://localhost:3000/market-test",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "timestamp": "2025-08-26T04:41:48.965Z"
+    },
+    {
+      "page": "http://localhost:3000/market-test",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "timestamp": "2025-08-26T04:41:49.023Z"
+    },
+    {
+      "page": "http://localhost:3000/market-test",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "timestamp": "2025-08-26T04:41:49.102Z"
+    },
+    {
+      "page": "http://localhost:3000/market-test",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "timestamp": "2025-08-26T04:41:49.104Z"
+    },
+    {
+      "page": "http://localhost:3000/market-test",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "timestamp": "2025-08-26T04:41:49.126Z"
+    },
+    {
+      "page": "http://localhost:3000/market-test",
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "timestamp": "2025-08-26T04:41:49.155Z"
+    }
+  ],
+  "networkErrors": [
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/market_data_cache",
+      "status": 404,
+      "statusText": "",
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:41:48.835Z"
+    },
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/market_data_cache",
+      "status": 404,
+      "statusText": "",
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:41:48.964Z"
+    },
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/newsletter_preferences?select=*&user_id=eq.test-user",
+      "status": 404,
+      "statusText": "",
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:41:49.022Z"
+    },
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/market_data_cache",
+      "status": 404,
+      "statusText": "",
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:41:49.102Z"
+    },
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/newsletter_preferences?select=*&user_id=eq.test-user",
+      "status": 404,
+      "statusText": "",
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:41:49.103Z"
+    },
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/market_data_cache",
+      "status": 404,
+      "statusText": "",
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:41:49.126Z"
+    },
+    {
+      "url": "https://fncqxcmkylscjjbcxriu.supabase.co/rest/v1/market_data_cache",
+      "status": 404,
+      "statusText": "",
+      "page": "http://localhost:3000/market-test",
+      "timestamp": "2025-08-26T04:41:49.154Z"
+    }
+  ],
+  "screenshots": []
+}

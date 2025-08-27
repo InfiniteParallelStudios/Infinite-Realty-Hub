@@ -1,0 +1,176 @@
+{
+  "timestamp": "2025-08-26T00:45:04.499Z",
+  "testConfiguration": {
+    "baseUrl": "http://192.168.1.218:3000",
+    "networkIp": "192.168.1.218",
+    "port": 3000,
+    "timeout": 30000,
+    "screenshotDir": "./test-screenshots",
+    "testResults": {
+      "serverAccess": null,
+      "qrGenerator": null,
+      "qrGeneration": null,
+      "captureForm": null,
+      "formSubmission": null,
+      "leadsDisplay": null,
+      "navigation": null,
+      "mobileCompatibility": null,
+      "serverLogs": null
+    }
+  },
+  "testResults": {
+    "serverAccess": {
+      "status": "PASS",
+      "code": 200
+    },
+    "qrGenerator": {
+      "status": "FAIL",
+      "error": "SyntaxError: Failed to execute 'querySelector' on 'Document': 'button:contains(\"Generate\"), button[class*=\"generate\"]' is not a valid selector."
+    },
+    "qrGeneration": {
+      "status": "FAIL",
+      "error": "SyntaxError: Failed to execute 'querySelector' on 'Document': 'button:contains(\"Generate\"), button[class*=\"generate\"]' is not a valid selector."
+    },
+    "captureForm": {
+      "status": "FAIL",
+      "error": "SyntaxError: Failed to execute 'querySelector' on 'Document': 'button[type=\"submit\"], button:contains(\"Connect\")' is not a valid selector."
+    },
+    "formSubmission": {
+      "status": "FAIL",
+      "error": "No element found for selector: input[placeholder*=\"first\" i], input[name=\"firstName\"]"
+    },
+    "leadsDisplay": {
+      "status": "FAIL",
+      "error": "SyntaxError: Failed to execute 'querySelector' on 'Document': 'h1:contains(\"QR\"), h1:contains(\"Leads\")' is not a valid selector."
+    },
+    "navigation": {
+      "status": "PASS",
+      "results": {
+        "/qr-generator": {
+          "status": "PASS",
+          "httpStatus": 200,
+          "name": "QR Generator"
+        },
+        "/qr-leads": {
+          "status": "PASS",
+          "httpStatus": 200,
+          "name": "QR Leads"
+        },
+        "/capture": {
+          "status": "PASS",
+          "httpStatus": 200,
+          "name": "Capture Form"
+        },
+        "/": {
+          "status": "PASS",
+          "httpStatus": 200,
+          "name": "Home"
+        }
+      },
+      "error": null
+    },
+    "mobileCompatibility": {
+      "status": "PASS",
+      "checks": {
+        "formVisible": true,
+        "inputsClickable": true,
+        "buttonAccessible": true,
+        "textReadable": true
+      },
+      "error": null
+    },
+    "serverLogs": null
+  },
+  "screenshots": [
+    {
+      "name": "server-access-success",
+      "description": "Server homepage loaded successfully",
+      "filename": "server-access-success_1756169043515.png",
+      "filepath": "test-screenshots/server-access-success_1756169043515.png"
+    },
+    {
+      "name": "qr-generator-page",
+      "description": "QR Generator page loaded",
+      "filename": "qr-generator-page_1756169063785.png",
+      "filepath": "test-screenshots/qr-generator-page_1756169063785.png"
+    },
+    {
+      "name": "qr-generator-error",
+      "description": "QR Generator page error",
+      "filename": "qr-generator-error_1756169065723.png",
+      "filepath": "test-screenshots/qr-generator-error_1756169065723.png"
+    },
+    {
+      "name": "qr-generation-error",
+      "description": "QR generation error",
+      "filename": "qr-generation-error_1756169066972.png",
+      "filepath": "test-screenshots/qr-generation-error_1756169066972.png"
+    },
+    {
+      "name": "capture-form-loaded",
+      "description": "Capture form page loaded",
+      "filename": "capture-form-loaded_1756169072369.png",
+      "filepath": "test-screenshots/capture-form-loaded_1756169072369.png"
+    },
+    {
+      "name": "capture-form-error",
+      "description": "Capture form error",
+      "filename": "capture-form-error_1756169073638.png",
+      "filepath": "test-screenshots/capture-form-error_1756169073638.png"
+    },
+    {
+      "name": "form-submission-error",
+      "description": "Form submission error",
+      "filename": "form-submission-error_1756169074836.png",
+      "filepath": "test-screenshots/form-submission-error_1756169074836.png"
+    },
+    {
+      "name": "leads-dashboard",
+      "description": "QR Leads dashboard",
+      "filename": "leads-dashboard_1756169080296.png",
+      "filepath": "test-screenshots/leads-dashboard_1756169080296.png"
+    },
+    {
+      "name": "leads-display-error",
+      "description": "Leads dashboard error",
+      "filename": "leads-display-error_1756169081707.png",
+      "filepath": "test-screenshots/leads-display-error_1756169081707.png"
+    },
+    {
+      "name": "navigation-test",
+      "description": "Navigation test completed",
+      "filename": "navigation-test_1756169093924.png",
+      "filepath": "test-screenshots/navigation-test_1756169093924.png"
+    },
+    {
+      "name": "mobile-capture-form",
+      "description": "Capture form on mobile",
+      "filename": "mobile-capture-form_1756169099758.png",
+      "filepath": "test-screenshots/mobile-capture-form_1756169099758.png"
+    },
+    {
+      "name": "mobile-qr-generator",
+      "description": "QR Generator on mobile",
+      "filename": "mobile-qr-generator_1756169103755.png",
+      "filepath": "test-screenshots/mobile-qr-generator_1756169103755.png"
+    }
+  ],
+  "errors": [
+    {
+      "type": "requestfailed",
+      "url": "http://192.168.1.218:3000/_next/static/webpack/webpack.c2d2af3160be8a17.hot-update.js",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "type": "requestfailed",
+      "url": "http://192.168.1.218:3000/_next/static/webpack/webpack.048a78f06e7e747c.hot-update.js",
+      "error": "net::ERR_ABORTED"
+    }
+  ],
+  "summary": {
+    "totalTests": 9,
+    "passed": 3,
+    "failed": 5,
+    "warnings": 0
+  }
+}

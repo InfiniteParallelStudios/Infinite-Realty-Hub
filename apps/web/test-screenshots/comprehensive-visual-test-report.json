@@ -1,0 +1,138 @@
+{
+  "timestamp": "2025-08-26T17:49:16.016Z",
+  "testType": "Comprehensive Visual Testing",
+  "summary": {
+    "totalPagesTest": 9,
+    "passedTests": 0,
+    "failedTests": 9,
+    "criticalErrors": 9
+  },
+  "detailedResults": [
+    {
+      "testName": "Home Page",
+      "url": "http://localhost:3000/",
+      "status": "failed",
+      "loadTime": 1065,
+      "screenshotPath": "",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "visualErrors": [
+        "Test execution error: this.page.waitForTimeout is not a function"
+      ],
+      "specificTestResults": [],
+      "userVisibleErrors": []
+    },
+    {
+      "testName": "Sign In Page",
+      "url": "http://localhost:3000/auth/signin",
+      "status": "failed",
+      "loadTime": 1724,
+      "screenshotPath": "",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "visualErrors": [
+        "Test execution error: this.page.waitForTimeout is not a function"
+      ],
+      "specificTestResults": [],
+      "userVisibleErrors": []
+    },
+    {
+      "testName": "Dashboard",
+      "url": "http://localhost:3000/dashboard",
+      "status": "failed",
+      "loadTime": 1013,
+      "screenshotPath": "",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "visualErrors": [
+        "Test execution error: this.page.waitForTimeout is not a function"
+      ],
+      "specificTestResults": [],
+      "userVisibleErrors": []
+    },
+    {
+      "testName": "Contacts Page",
+      "url": "http://localhost:3000/contacts",
+      "status": "failed",
+      "loadTime": 962,
+      "screenshotPath": "",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "visualErrors": [
+        "Test execution error: this.page.waitForTimeout is not a function"
+      ],
+      "specificTestResults": [],
+      "userVisibleErrors": []
+    },
+    {
+      "testName": "Pipeline Page",
+      "url": "http://localhost:3000/pipeline",
+      "status": "failed",
+      "loadTime": 1481,
+      "screenshotPath": "",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "visualErrors": [
+        "Test execution error: this.page.waitForTimeout is not a function"
+      ],
+      "specificTestResults": [],
+      "userVisibleErrors": []
+    },
+    {
+      "testName": "QR Generator",
+      "url": "http://localhost:3000/qr-generator",
+      "status": "failed",
+      "loadTime": 1539,
+      "screenshotPath": "",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "visualErrors": [
+        "Test execution error: this.page.waitForTimeout is not a function"
+      ],
+      "specificTestResults": [],
+      "userVisibleErrors": []
+    },
+    {
+      "testName": "Newsletter Page",
+      "url": "http://localhost:3000/newsletter",
+      "status": "failed",
+      "loadTime": 1537,
+      "screenshotPath": "",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "visualErrors": [
+        "Test execution error: this.page.waitForTimeout is not a function"
+      ],
+      "specificTestResults": [],
+      "userVisibleErrors": []
+    },
+    {
+      "testName": "Team Page",
+      "url": "http://localhost:3000/team",
+      "status": "failed",
+      "loadTime": 1358,
+      "screenshotPath": "",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "visualErrors": [
+        "Test execution error: this.page.waitForTimeout is not a function"
+      ],
+      "specificTestResults": [],
+      "userVisibleErrors": []
+    },
+    {
+      "testName": "Market Test Page",
+      "url": "http://localhost:3000/market-test",
+      "status": "failed",
+      "loadTime": 1291,
+      "screenshotPath": "",
+      "consoleErrors": [],
+      "networkErrors": [],
+      "visualErrors": [
+        "Test execution error: this.page.waitForTimeout is not a function"
+      ],
+      "specificTestResults": [],
+      "userVisibleErrors": []
+    }
+  ]
+}

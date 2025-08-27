@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code System Test Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; text-align: center; }
+        .test-result { margin: 20px 0; padding: 15px; border-radius: 8px; border-left: 5px solid; }
+        .pass { background: #f0f8f0; border-color: #4caf50; }
+        .fail { background: #fdf0f0; border-color: #f44336; }
+        .warning { background: #fff8e1; border-color: #ff9800; }
+        .screenshot { max-width: 300px; margin: 10px 0; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .error-log { background: #fdf0f0; padding: 10px; border-radius: 4px; margin: 10px 0; font-family: monospace; font-size: 12px; }
+        code { background: #f5f5f5; padding: 2px 4px; border-radius: 3px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 QR Code Lead Capture System Test Report</h1>
+            <p>Generated on 8/25/2025, 8:45:04 PM</p>
+            <p>Server: <code>http://192.168.1.218:3000</code></p>
+        </div>
+        
+        <div class="summary">
+            <div class="stat-card">
+                <h3>9</h3>
+                <p>Total Tests</p>
+            </div>
+            <div class="stat-card">
+                <h3>3</h3>
+                <p>✅ Passed</p>
+            </div>
+            <div class="stat-card">
+                <h3>5</h3>
+                <p>❌ Failed</p>
+            </div>
+            <div class="stat-card">
+                <h3>0</h3>
+                <p>⚠️ Warnings</p>
+            </div>
+        </div>
+        
+        <div class="test-results">
+            
+                <div class="test-result pass">
+                    <h3>✅ server Access</h3>
+                    <p><strong>Status:</strong> PASS</p>
+                    
+                    
+                    
+                </div>
+              
+                <div class="test-result fail">
+                    <h3>❌ qr Generator</h3>
+                    <p><strong>Status:</strong> FAIL</p>
+                    <p><strong>Error:</strong> SyntaxError: Failed to execute 'querySelector' on 'Document': 'button:contains("Generate"), button[class*="generate"]' is not a valid selector.</p>
+                    
+                    
+                </div>
+              
+                <div class="test-result fail">
+                    <h3>❌ qr Generation</h3>
+                    <p><strong>Status:</strong> FAIL</p>
+                    <p><strong>Error:</strong> SyntaxError: Failed to execute 'querySelector' on 'Document': 'button:contains("Generate"), button[class*="generate"]' is not a valid selector.</p>
+                    
+                    
+                </div>
+              
+                <div class="test-result fail">
+                    <h3>❌ capture Form</h3>
+                    <p><strong>Status:</strong> FAIL</p>
+                    <p><strong>Error:</strong> SyntaxError: Failed to execute 'querySelector' on 'Document': 'button[type="submit"], button:contains("Connect")' is not a valid selector.</p>
+                    
+                    
+                </div>
+              
+                <div class="test-result fail">
+                    <h3>❌ form Submission</h3>
+                    <p><strong>Status:</strong> FAIL</p>
+                    <p><strong>Error:</strong> No element found for selector: input[placeholder*="first" i], input[name="firstName"]</p>
+                    
+                    
+                </div>
+              
+                <div class="test-result fail">
+                    <h3>❌ leads Display</h3>
+                    <p><strong>Status:</strong> FAIL</p>
+                    <p><strong>Error:</strong> SyntaxError: Failed to execute 'querySelector' on 'Document': 'h1:contains("QR"), h1:contains("Leads")' is not a valid selector.</p>
+                    
+                    
+                </div>
+              
+                <div class="test-result pass">
+                    <h3>✅ navigation</h3>
+                    <p><strong>Status:</strong> PASS</p>
+                    
+                    
+                    
+                </div>
+              
+                <div class="test-result pass">
+                    <h3>✅ mobile Compatibility</h3>
+                    <p><strong>Status:</strong> PASS</p>
+                    
+                    <p><strong>Checks:</strong> <code>{
+  "formVisible": true,
+  "inputsClickable": true,
+  "buttonAccessible": true,
+  "textReadable": true
+}</code></p>
+                    
+                </div>
+              
+        </div>
+        
+        <div class="screenshots">
+            <h2>📸 Screenshots</h2>
+            
+              <div>
+                <h4>Server homepage loaded successfully</h4>
+                <img src="server-access-success_1756169043515.png" alt="Server homepage loaded successfully" class="screenshot" />
+              </div>
+            
+              <div>
+                <h4>QR Generator page loaded</h4>
+                <img src="qr-generator-page_1756169063785.png" alt="QR Generator page loaded" class="screenshot" />
+              </div>
+            
+              <div>
+                <h4>QR Generator page error</h4>
+                <img src="qr-generator-error_1756169065723.png" alt="QR Generator page error" class="screenshot" />
+              </div>
+            
+              <div>
+                <h4>QR generation error</h4>
+                <img src="qr-generation-error_1756169066972.png" alt="QR generation error" class="screenshot" />
+              </div>
+            
+              <div>
+                <h4>Capture form page loaded</h4>
+                <img src="capture-form-loaded_1756169072369.png" alt="Capture form page loaded" class="screenshot" />
+              </div>
+            
+              <div>
+                <h4>Capture form error</h4>
+                <img src="capture-form-error_1756169073638.png" alt="Capture form error" class="screenshot" />
+              </div>
+            
+              <div>
+                <h4>Form submission error</h4>
+                <img src="form-submission-error_1756169074836.png" alt="Form submission error" class="screenshot" />
+              </div>
+            
+              <div>
+                <h4>QR Leads dashboard</h4>
+                <img src="leads-dashboard_1756169080296.png" alt="QR Leads dashboard" class="screenshot" />
+              </div>
+            
+              <div>
+                <h4>Leads dashboard error</h4>
+                <img src="leads-display-error_1756169081707.png" alt="Leads dashboard error" class="screenshot" />
+              </div>
+            
+              <div>
+                <h4>Navigation test completed</h4>
+                <img src="navigation-test_1756169093924.png" alt="Navigation test completed" class="screenshot" />
+              </div>
+            
+              <div>
+                <h4>Capture form on mobile</h4>
+                <img src="mobile-capture-form_1756169099758.png" alt="Capture form on mobile" class="screenshot" />
+              </div>
+            
+              <div>
+                <h4>QR Generator on mobile</h4>
+                <img src="mobile-qr-generator_1756169103755.png" alt="QR Generator on mobile" class="screenshot" />
+              </div>
+            
+        </div>
+        
+        
+        <div class="errors">
+            <h2>🐛 Errors</h2>
+            
+              <div class="error-log">
+                <strong>requestfailed:</strong> net::ERR_ABORTED
+                <br><strong>URL:</strong> http://192.168.1.218:3000/_next/static/webpack/webpack.c2d2af3160be8a17.hot-update.js
+              </div>
+            
+              <div class="error-log">
+                <strong>requestfailed:</strong> net::ERR_ABORTED
+                <br><strong>URL:</strong> http://192.168.1.218:3000/_next/static/webpack/webpack.048a78f06e7e747c.hot-update.js
+              </div>
+            
+        </div>
+        
+    </div>
+</body>
+</html>
+    
